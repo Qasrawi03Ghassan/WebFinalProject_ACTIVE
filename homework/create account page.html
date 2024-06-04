@@ -3,8 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <title>create a new account</title>
+    <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+    <script type="text/javascript">
+        function highlight(thingid)
+        {
+            document.getElementById(thingid).style.backgroundColor="#43454f";
+        }
+        function unhighlight(thingid)
+        {
+            document.getElementById(thingid).style.backgroundColor="#23252e";
+        }
+    </script>
+    <style>
+        form{background-color: #1b1c24;
+            height: 650px;
+            width: 35%;
+            position: absolute;
+            left: 35%;
+            top: 10%;
+            border-radius: 25px;
+
+        }
+        body {
+            background-image: url("images/foodbg.jpg");
+            background-size: 100%;
+
+        }
+        div.inputname{
+            color:white;
+            position: absolute;
+            font-size: larger;
+            left:13%;
+            width: 74%;
+            height:30px
+        }
+        h1#welcome_text{
+            color: white;
+            position: absolute;
+            top:3%;
+            left:26%;
+            width:52%
+        }
+        input {
+            width: 70%;
+            height: 100%;
+            border-radius: 7px;
+            border: 0;
+
+        }
+
+    </style>
 </head>
 <body>
+<form action="" method="post">
+    <h1 id ="welcome_text" style="font-family: 'Libre Baskerville'; font-size: 36px">Create an account:</h1>
+    <div class="inputname" style ="top:22%" >
+        Username:<span> </span><input id="username"  placeholder=" user1234" >
+    </div>
+
+    <div class="inputname" style ="top:32%" >
+        email:<span> &nbsp &nbsp &nbsp &nbsp</span><input id="email"  placeholder="  user@Gmail.com" >
+    </div>
+
+    <div class="inputname" style ="top:42%" >
+        Password:<span>  &nbsp</span><input id="password" type ="password"  placeholder="    xxxxxxxxxxxxxxx" >
+    </div>
+    <div class="inputname" style ="top:52%; width:26%; left:37%; font-size: 25px" >
+        Credit card info:
+    </div>
+    <div class="inputname" style ="top:62%" >
+        Card holder name:<span> &nbsp &nbsp</span><input id="card_holder_name"   placeholder=" john doe" style="width: 54.5%; height: 70%" >
+    </div>
+    <div class="inputname" style ="top:70%" >
+        Credit card number:<span>  &nbsp</span><input id="creditnumber"  placeholder="  1234 1234 1234 1234" style="width: 54.5%; height: 70%" >
+    </div>
+    <div class="inputname" style ="top:78%" >
+        <span style=" position: absolute; width:25%"> Expiration date:</span>
+        <input id="exp_date"   placeholder="  MM/YY" style="width: 23%; height: 70%; left: 27%; position: absolute" >
+        <span style="left:55%; position: absolute; width:25%"> CVV:</span>
+        <input id="cvv"   placeholder="  123" style="width: 23%; height: 70%; left: 65%; position: absolute" >
+    </div>
+    <div class="inputname" style ="top:88%; left:64%">
+        <input id="submitbutton" type ="submit" value="Confirm" style="background-color: #23252e; border: 1px solid gray; color: white; width : 20%"  onmouseenter="highlight('submitbutton')" onmouseleave="unhighlight('submitbutton')">
+
+    </div>
+
+    <div class="inputname" style ="top:88%; ">
+        <input id="cancel" type ="reset" value="cancel" style="background-color: #23252e; border: 1px solid gray; color: white; width : 20%"  onmouseenter="highlight('cancel')" onmouseleave="unhighlight('cancel')">
+
+    </div>
+
+</form>
 
 </body>
 </html>
+
