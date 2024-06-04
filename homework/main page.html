@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>najah restaurant</title>
+    <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body{
+            background-image: url("images/foodbg.jpg");
+            background-color: #1b1c24 ;
+            background-attachment: fixed;
+        }
+
+        section{
+            z-index: -1;
+            position: absolute;
+            background-color: #1b1c24;
+            height: 200%;
+            width: 85%;
+            left:7.5%;
+            top: 12.5%;
+            border-top-right-radius: 25px;
+            border-top-left-radius: 25px;
+
+        }
+        .textstyle{
+
+           font-size: 150%;
+            background: rgba(27, 28, 36, 0.3);
+
+        }
+
+
+            a:link{color: white;}
+            a:hover{color: orange;
+                cursor: pointer;}/*Changed from none to pointer by Ghassan*/
+
+
+
+
+
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+
+    <script>
+
+        function show_return(){
+            if(window.scrollY>300) {
+                document.getElementById("return").style.display = "block"
+            }
+            else{
+                document.getElementById("return").style.display = "none"
+            }
+        }
+
+    </script>
+</head>
+
+<body onscroll="show_return()">
+
+<div id="start_of_page" style="position: absolute; top:0%"></div>
+
+<table  style ="position: absolute; width :40%; top :5%; left: 10%; align-content: center; color: white;text-align: center ">
+    <tr>
+        <td class="textstyle"> <a> home </a> </td>
+        <td class="textstyle"> <a>about</a></td>
+        <td class="textstyle"> <a>menu</a></td>
+        <td class="textstyle"> <a>sales</a></td>
+        <td class="textstyle"> <a>contact</a></td>
+
+    </tr>
+</table>
+
+<table style ="position: absolute; width :30%; top :4%; left: 55%; align-content: center; color: white;text-align: center ">
+    <tr>
+        <td style="  font-size: 250%;  background: rgba(27, 28, 36, 0.4); font-family: 'Libre Baskerville'; "> <b>Najah restaurant</b> </td>
+
+
+    </tr>
+</table>
+
+
+<section>
+
+
+
+
+
+
+
+
+</section>
+
+<IMG SRC="images/shopping_cart.png" WIDTH="width" HEIGHT="height"  title="shopping cart" style="top :3%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b;">
+
+<IMG SRC="images/profilepic.png" WIDTH="width" HEIGHT="height" ALT="Image Text" title="profile pic" style="top :3%; left : 1%; position : absolute">
+
+<a href ="#start_of_page"><IMG  id="return"   SRC="images/arrow.png" WIDTH="width" HEIGHT="height"  title="return" style="top :85%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b; display: none"> </a>
+
+</body>
+</html>

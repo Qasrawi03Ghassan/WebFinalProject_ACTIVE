@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Najah restaurant log-in</TITLE>
+    <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+
+    <script type="text/javascript">
+        function highlight(thingid)
+        {
+            document.getElementById(thingid).style.backgroundColor="#43454f";
+        }
+        function unhighlight(thingid)
+        {
+            document.getElementById(thingid).style.backgroundColor="#23252e";
+        }
+
+        function login()
+        {
+            window. open ("main%20page.html", "1");
+        }
+
+        function changesize()
+        {
+
+
+            //   if(window.innerWidth==1420 || window.innerWidth>1420)
+          //     document.body.style.backgroundSize = toString(window.innerWidth)+"px";
+           //    if(window.innerWidth<1420)
+            //   document.body.style.backgroundSize = "200%";
+
+        }
+    </script>
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+    a:link{color: lightgray;}
+    a:visited{color: dimgray;}
+    a:hover{color: white}
+
+    div#login{background-color: #1b1c24;
+        height: 550px;
+        width: 35%;
+        position: absolute;
+        left: 35%;
+        top: 15%;
+        border-radius: 25px;
+
+    }
+
+
+
+
+        body {
+            background-image: url("images/foodbg.jpg");
+            background-size: 100%;
+
+        }
+
+
+    h1#welcome_text{
+        color: white;
+        position: absolute;
+        top:10%;
+        left:8.5%;
+        width:90%;
+
+    }
+
+    div.inputname{
+        color:white;
+        position: absolute;
+        font-size: larger;
+        top: 36%;
+        left:13%;
+        width: 74%;
+        height:30px
+    }
+
+    input {
+        width: 70%;
+        height: 100%;
+        border-radius: 7px;
+        border: 0;
+    }
+</style>
+
+    <style>
+
+        @media(max-aspect-ratio: 16/9){
+            div#login{background-color: #1b1c24;
+                height: 850px;
+                width: 60%;
+                position: relative;
+                left: 20%;
+                top: 150px;
+
+
+            }
+            body {
+                background-image: url("images/pexels-pixabay-3262812phone.jpg");
+                background-size: 130%;
+                background-repeat: no-repeat;/* Added by Ghassan*/
+
+
+            }
+            h1#welcome_text{
+                left:5%;
+            }
+
+        }
+
+
+    </style>
+</HEAD>
+<BODY onresize="changesize()">
+<div id="login">
+
+<h1 id ="welcome_text" style="font-family: 'Libre Baskerville',serif; font-size: 36px">Welcome to Najah restaurant!</h1>
+    <form action="main%20page.html" method="get">
+    <div class="inputname">
+         Username:<span>  </span><input type="text" id ="username" placeholder="enter username here..."><br>
+    </div>
+    <div class="inputname" style ="top:46%" >
+         Password:<span>  &nbsp</span><input id="password" type ="password"  placeholder="enter password here..." >
+    </div>
+    <div style ="position: absolute; width: 100%; top :58%; height:35px; left:26.2%" >
+
+        <input id="submitbutton" type ="submit" value="login" style="background-color: #23252e; border: 1px solid gray; color: white; width : 20%" onclick="login()" onmouseenter="highlight('submitbutton')" onmouseleave="unhighlight('submitbutton')">
+        <span> &nbsp  </span>
+        <a href="forgot%20account%20page.html" target="_blank"> forgot your password?</a>
+
+    </div>
+    </form>
+    <div style ="position: absolute; width: 100%; top :70%; left:13%">
+
+        <span style="color: white" > dont have an account?</span>
+
+    </div>
+    <div style ="position: absolute; width: 100%; top :80%; left:26.2%; height:35px">
+        <button id="guest" style="background-color: #23252e; border: 1px solid gray; color: white; height: 100%; width : 20%; border-radius: 7px;" onclick="login()" onmouseenter="highlight('guest')" onmouseleave="unhighlight('guest')"> login as guest</button>
+        <span style="color: white"> &nbsp or &nbsp </span>
+        <a href="create%20account%20page.html" target="0">make a new account</a>
+    </div>
+</div>
+</BODY>
+</HTML>
