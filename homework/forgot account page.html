@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Account recovery</title>
     <style>
         span,h1,#emailSubmit,#afterCode,#codeSubmit,#changePassSubmit{
@@ -73,9 +74,15 @@
             cursor: pointer;
             background-color: rgb(67, 69, 79);
         }
-        #emailSubmit:active,#codeSubmit:active,#changePassSubmit:active{
+        #emailSubmit:active,#codeSubmit:active{
             color: black;
             background-color: white;
+            margin-top: 15px;
+        }
+        #changePassSubmit:active{
+            background-color: white;
+            color: black;
+            margin-top: 25px;
         }
         #afterCode{
             visibility: hidden;
@@ -99,22 +106,46 @@
     #newPassTxt{
         display: block;
     }
-
+    #check{
+        color: white;
+        font-size: 60px;
+        background-color: rgb(249,192,46);
+        width: 70px;
+        height: 70px;
+        border-radius: 15px;
+        position: absolute;
+        top: 250px;
+        left:210px;
+        transition: opacity 0.5s ease,visibility 1s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
     </style>
     <script>
+        const emailTxt = document.getElementById("UserEmail");
+        const emailBtn = document.getElementById("emailSubmit");
+
+        const codeTxt = document.getElementById("UserCode");
+        const codeBtn = document.getElementById("codeSubmit");
 
         function sendCode(eValue){
             /*code to send the code :D*/
+            
+
+
 
             showAfterCode();
         }
+        emailBtn.addEventListener('click',sendCode);
+
+
         function showAfterCode(){
             if( document.getElementById("UserEmail").value !== ""){
                 document.getElementById("container").style.height="500px";
                 document.getElementById("afterCode").style.visibility="visible";
                 document.getElementById("afterCode").style.opacity="1";
             }else{
-                window.alert("Please enter a valid email address first!")
+                //let it blank so it won't change layout
             }
         }
         function checkCode(cValue){
@@ -137,36 +168,53 @@
                 document.getElementById("passCont").style.height="350px";
 
             }else{
-                window.alert("Please enter a valid code!")
+                //let blank so it won't change layout
             }
 
         }
+
         function checkPass(){
             let newPass = document.getElementById("newPass").value;
             let confirmPass = document.getElementById("confirmPass").value;
 
-            if(newPass === "" && confirmPass === ""){
-                window.alert("Please enter a new password and confirm it!")
+            if(newPass === "" || confirmPass === ""){
+                //window.alert("Please enter a new password and confirm it!")
             }else{
                 if(newPass === confirmPass){
 
                     changePass(newPass);
 
-                    window.alert("Password changed successfully!\nRedirecting you to login page!");
-                    window.close();
-                    window.open("index.html");
+                    submitPass();
+
+                    //window.alert("Password changed successfully!\nRedirecting you to login page!");
+
+                    setTimeout(function (){
+                        window.open("index.html","1");
+                        window.close();
+                    },2000)
                 }else{
                     window.alert("Please enter the same values for both field!");
                 }
             }
         }
-        function changePass(p){
+        function changePass(p) {
             /*code to change password*/
+        }
+        function submitPass(){
+            const sBtn = document.getElementById("changePassSubmit");
+            const checkIcon = document.getElementById("check");
 
+            sBtn.style.transition="visibility 1s ease,opacity 1s ease";
+            sBtn.style.opacity="0";
+            sBtn.style.visibility="hidden";
+
+            checkIcon.style.visibility="visible";
+            checkIcon.style.opacity="1";
 
 
 
         }
+
     </script>
 </head>
 <body>
@@ -174,25 +222,25 @@
     <h1>Account recovery</h1>
     <span id="emailEnter">Please enter a valid email address below to send you a verification code</span>
     <div id="formContainer">
-        <form action="forgot%20account%20page.html" method="post">
+        <form action="forgot%20account%20page.html" method="post" onsubmit="return false">
             <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" placeholder="enter your email here..." maxlength="30" required>
-            <input type="button" id="emailSubmit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
+            <input type="submit" id="emailSubmit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
+        </form>
+        <form action="forgot%20account%20page.html" method="post" onsubmit="return false">
             <div id="afterCode" class="showSlower hidden">
                     <span id="codeTxt">code was sent successfully!<br><br>Code:&nbsp</span><input type="password" id="UserCode" placeholder="enter the code we sent you here..." pattern="[0-9]{6}" minlength="6" maxlength="6" required>
-                    <input type="button" id="codeSubmit" value="Submit code" onclick='checkCode(document.getElementById("UserCode").value)'>
+                    <input type="submit" id="codeSubmit" value="Submit code" onclick='checkCode(document.getElementById("UserCode").value)'>
             </div>
         </form>
     </div>
 </div>
 <div id="passCont" align="center" class="showPass">
     <h1 style="font-size: 30px">Create new password</h1>
-    <form action="forgot%20account%20page.html" method="post">
         <span id="newPassTxt">New Password</span><input type="password" id="newPass" placeholder="enter your new password here..." required>
         <br><br><br>
         <span id="confirmPassTxt">Confirm new Password</span><input type="password" id="confirmPass" placeholder="re-enter your new password here..." required>
-        <input type="button" id="changePassSubmit" value="Change password" onclick='checkPass(document.getElementById("newPass").value)'>
-    </form>
-
+        <input type="button" id="changePassSubmit" value="Change password" onclick='checkPass()'>
+    <i class="fa-solid fa-check" id="check"></i>
 </div>
 
 
