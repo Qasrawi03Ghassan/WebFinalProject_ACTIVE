@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Account recovery</title>
     <style>
         span,h1,#emailSubmit,#afterCode,#codeSubmit,#changePassSubmit{
@@ -122,22 +123,35 @@
     }
     </style>
     <script>
-        const emailTxt = document.getElementById("UserEmail");
-        const emailBtn = document.getElementById("emailSubmit");
 
-        const codeTxt = document.getElementById("UserCode");
-        const codeBtn = document.getElementById("codeSubmit");
+        function checkEmail(email){
+            if(email.includes("@") && email.split("@")[1].includes(".com")){
+                return true;
+            }else {
+                return false;
+            }
+        }
 
         function sendCode(eValue){
-            /*code to send the code :D*/
-            
+            if(checkEmail(eValue)){
+                //Send code here
+                //This code sends the code to the php server for checking.
+                /*$(document).ready(function(){
+                    let codeSent = {
+                        code: $("#UserCode").val()
+                    };
+                    $.ajax({
+                        url: "forgotPassProcess.php",
+                        type: "POST",
+                        data: codeSent
+                    });
+                });*/
 
-
-
-            showAfterCode();
+                showAfterCode();
+            }else if(eValue !==""){
+                window.alert("Please enter a valid email address!");
+            }
         }
-        emailBtn.addEventListener('click',sendCode);
-
 
         function showAfterCode(){
             if( document.getElementById("UserEmail").value !== ""){
@@ -189,7 +203,7 @@
                     //window.alert("Password changed successfully!\nRedirecting you to login page!");
 
                     setTimeout(function (){
-                        window.open("index.html","1");
+                        //window.open("index.html","1"); No need for this.
                         window.close();
                     },2000)
                 }else{
@@ -222,7 +236,7 @@
     <h1>Account recovery</h1>
     <span id="emailEnter">Please enter a valid email address below to send you a verification code</span>
     <div id="formContainer">
-        <form action="forgot%20account%20page.html" method="post" onsubmit="return false">
+        <form action="forgotPassProcess.php" method="post" onsubmit="return false">
             <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" placeholder="enter your email here..." maxlength="30" required>
             <input type="submit" id="emailSubmit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
         </form>
