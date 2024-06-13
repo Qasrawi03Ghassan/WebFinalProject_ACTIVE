@@ -135,17 +135,6 @@
         function sendCode(eValue){
             if(checkEmail(eValue)){
                 //Send code here
-                //This code sends the code to the php server for checking.
-                /*$(document).ready(function(){
-                    let codeSent = {
-                        code: $("#UserCode").val()
-                    };
-                    $.ajax({
-                        url: "forgotPassProcess.php",
-                        type: "POST",
-                        data: codeSent
-                    });
-                });*/
 
                 showAfterCode();
             }else if(eValue !==""){
@@ -192,7 +181,7 @@
             let confirmPass = document.getElementById("confirmPass").value;
 
             if(newPass === "" || confirmPass === ""){
-                //window.alert("Please enter a new password and confirm it!")
+                window.alert("Please enter a new password and confirm it!")
             }else{
                 if(newPass === confirmPass){
 
@@ -224,9 +213,6 @@
 
             checkIcon.style.visibility="visible";
             checkIcon.style.opacity="1";
-
-
-
         }
 
     </script>
