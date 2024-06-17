@@ -174,10 +174,13 @@
             let newPass = document.getElementById("newPass").value;
             let confirmPass = document.getElementById("confirmPass").value;
 
-            if(newPass === "" || confirmPass === ""){
-                window.alert("Please enter a new password and confirm it!");
+            if(newPass == "" || confirmPass == ""){
+                //window.alert("Please enter a new password and confirm it!");
             }else{
-                if(newPass === confirmPass){
+                if(newPass.length < 8 || confirmPass.length < 8){
+                    //window.alert("Please enter at least 8 characters!");
+                }
+                else if(newPass == confirmPass){
 
                     changePass(newPass);
 
@@ -216,7 +219,7 @@
                 //console.log(genCode); // Used for checking only
 
                 $.post("forgotPassProcess.php",{email:email,genCode:genCode},function (data) {
-                    //console.log(data); // Not important, just to check if email is sent successfully or not.
+                    console.log(data); // Not important, just to check if email is sent successfully or not.
                 })
             })
         })
@@ -240,6 +243,19 @@
             }
         }
 
+        $(document).ready(function () {
+            $("#passForm").submit(function (evt) {
+                evt.preventDefault();
+                if(document.getElementById("newPass").value == document.getElementById("confirmPass").value){
+                    var userNewPass = document.getElementById("newPass").value;
+
+                    $.post("forgotPassProcess.php",{userNewPass:userNewPass},function (data){
+                        console.log(data);
+                    });
+                }
+            })
+        })
+
     </script>
 </head>
 <body>
@@ -248,12 +264,12 @@
     <span id="emailEnter">Please enter a valid email address below to send you a verification code</span>
     <div id="formContainer">
         <form method="post" id="emailForm">
-            <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" name="email" placeholder="enter your email here..." maxlength="30" required>
+            <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" name="email" placeholder="enter your email here..." maxlength="30" title="Enter your email." required>
             <input type="submit" id="emailSubmit" name="submit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
         </form>
         <form method="post" id="codeForm">
             <div id="afterCode" class="showSlower hidden">
-                    <span id="codeTxt">code was sent successfully!<br><br>Code:&nbsp</span><input type="password" id="UserCode" placeholder="enter the code we sent you here..." pattern="[0-9]{6}" minlength="6" maxlength="6" required>
+                    <span id="codeTxt">code was sent successfully!<br><br>Code:&nbsp</span><input type="password" id="UserCode" placeholder="enter the code we sent you here..." pattern="[0-9]{6}" minlength="6" maxlength="6" title="Enter the sent code please..." required>
                     <input type="submit" id="codeSubmit" name="codeS" value="Submit code" onclick='checkCode(document.getElementById("UserCode").value)'>
             </div>
         </form>
@@ -261,10 +277,12 @@
 </div>
 <div id="passCont" align="center" class="showPass">
     <h1 style="font-size: 30px">Create new password</h1>
-        <span id="newPassTxt">New Password</span><input type="password" id="newPass" placeholder="enter your new password here..." required>
+    <form method="post" id="passForm">
+        <span id="newPassTxt">New Password</span><input type="password" id="newPass" placeholder="enter your new password here..." title="At least 8 characters required" minlength="8" required>
         <br><br><br>
-        <span id="confirmPassTxt">Confirm new Password</span><input type="password" id="confirmPass" placeholder="re-enter your new password here..." required>
-        <input type="button" id="changePassSubmit" value="Change password" onclick='checkPass()'>
+        <span id="confirmPassTxt">Confirm new Password</span><input type="password" id="confirmPass" placeholder="re-enter your new password here..." title="At least 8 characters required" minlength="8" required>
+        <input type="submit" id="changePassSubmit" value="Change password" onclick='checkPass()'>
+    </form>
     <i class="fa-solid fa-check" id="check"></i>
 </div>
 

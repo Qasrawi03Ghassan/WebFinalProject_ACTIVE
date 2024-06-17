@@ -17,3 +17,17 @@
             }
         }
     }
+    if(isset($_POST['userNewPass'])) {
+        //Change password in database here
+        //echo $_POST['userNewPass']; just for checking
+
+
+
+
+
+
+
+
+
+
+    }
