@@ -124,6 +124,8 @@
     </style>
     <script>
 
+        let genCode = Math.floor(Math.random()*900000)+100000;
+
         function checkEmail(email){
             if(email.includes("@") && email.split("@")[1].includes(".com")){
                 return true;
@@ -134,8 +136,6 @@
 
         function sendCode(eValue){
             if(checkEmail(eValue)){
-                //Send code here
-
                 showAfterCode();
             }else if(eValue !==""){
                 window.alert("Please enter a valid email address!");
@@ -150,12 +150,6 @@
             }else{
                 //let it blank so it won't change layout
             }
-        }
-        function checkCode(cValue){
-            /*Checking functionality*/
-
-
-        showNewPass(cValue);
         }
 
         function showNewPass(c){
@@ -181,15 +175,13 @@
             let confirmPass = document.getElementById("confirmPass").value;
 
             if(newPass === "" || confirmPass === ""){
-                window.alert("Please enter a new password and confirm it!")
+                window.alert("Please enter a new password and confirm it!");
             }else{
                 if(newPass === confirmPass){
 
                     changePass(newPass);
 
                     submitPass();
-
-                    //window.alert("Password changed successfully!\nRedirecting you to login page!");
 
                     setTimeout(function (){
                         //window.open("index.html","1"); No need for this.
@@ -215,6 +207,39 @@
             checkIcon.style.opacity="1";
         }
 
+
+        $(document).ready(function (){
+            $("#emailForm").submit(function (event) {
+                event.preventDefault();
+                var email = document.getElementById("UserEmail").value;
+
+                //console.log(genCode); // Used for checking only
+
+                $.post("forgotPassProcess.php",{email:email,genCode:genCode},function (data) {
+                    //console.log(data); // Not important, just to check if email is sent successfully or not.
+                })
+            })
+        })
+
+        $(document).ready(function () {
+            $("#codeForm").submit(function(event){
+                event.preventDefault();
+                var code = document.getElementById("UserCode").value;
+              $.post("forgotPassProcess.php",{code:code},function (data){
+                 // console.log(data); Not important, just to check if code is sent successfully or not.
+              });
+            })
+        })
+        function checkCode(cValue){
+            /*Checking functionality*/
+            if(genCode != cValue && cValue != ""){//Dont ch
+                //alert("Invalid code!\n"+"GenCode: "+genCode+"\nUserCode: "+cValue);
+                alert("Invalid code!");
+            }else {
+                showNewPass(cValue);
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -222,14 +247,14 @@
     <h1>Account recovery</h1>
     <span id="emailEnter">Please enter a valid email address below to send you a verification code</span>
     <div id="formContainer">
-        <form action="forgotPassProcess.php" method="post" onsubmit="return false">
-            <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" placeholder="enter your email here..." maxlength="30" required>
-            <input type="submit" id="emailSubmit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
+        <form method="post" id="emailForm">
+            <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" name="email" placeholder="enter your email here..." maxlength="30" required>
+            <input type="submit" id="emailSubmit" name="submit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
         </form>
-        <form action="forgot%20account%20page.html" method="post" onsubmit="return false">
+        <form method="post" id="codeForm">
             <div id="afterCode" class="showSlower hidden">
                     <span id="codeTxt">code was sent successfully!<br><br>Code:&nbsp</span><input type="password" id="UserCode" placeholder="enter the code we sent you here..." pattern="[0-9]{6}" minlength="6" maxlength="6" required>
-                    <input type="submit" id="codeSubmit" value="Submit code" onclick='checkCode(document.getElementById("UserCode").value)'>
+                    <input type="submit" id="codeSubmit" name="codeS" value="Submit code" onclick='checkCode(document.getElementById("UserCode").value)'>
             </div>
         </form>
     </div>
