@@ -57,6 +57,7 @@
             width: 70%;
             height: 30px;
             border-radius: 7px;
+            font-size: 15px;
         }
         #emailSubmit,#codeSubmit,#changePassSubmit{
             margin-top: 10px;
@@ -121,6 +122,28 @@
         opacity: 0;
         visibility: hidden;
     }
+
+    #showPassBtn,#hidePassBtn{
+        position: absolute;
+        right: 95px;
+        top: 109px;
+        background-color: white;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    #showConfirmPassBtn,#hideConfirmPassBtn{
+        position: absolute;
+        right: 95px;
+        top: 206px;
+        background-color: white;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    #hidePassBtn,#hideConfirmPassBtn{
+        display: none;
+    }
     </style>
     <script>
 
@@ -181,8 +204,7 @@
                     //window.alert("Please enter at least 8 characters!");
                 }
                 else if(newPass == confirmPass){
-
-                    changePass(newPass);
+                    //Changing the password in database is done in php server
 
                     submitPass();
 
@@ -194,9 +216,6 @@
                     window.alert("Please enter the same values for both field!");
                 }
             }
-        }
-        function changePass(p) {
-            /*code to change password*/
         }
         function submitPass(){
             const sBtn = document.getElementById("changePassSubmit");
@@ -256,6 +275,7 @@
             })
         })
 
+
     </script>
 </head>
 <body>
@@ -279,13 +299,47 @@
     <h1 style="font-size: 30px">Create new password</h1>
     <form method="post" id="passForm">
         <span id="newPassTxt">New Password</span><input type="password" id="newPass" placeholder="enter your new password here..." title="At least 8 characters required" minlength="8" required>
+        <button type="button" id="showPassBtn"><i class="fa-solid fa-eye"></i></button>
+        <button type="button" id="hidePassBtn"><i class="fa-solid fa-eye-slash"></i></button>
         <br><br><br>
         <span id="confirmPassTxt">Confirm new Password</span><input type="password" id="confirmPass" placeholder="re-enter your new password here..." title="At least 8 characters required" minlength="8" required>
+        <button type="button" id="showConfirmPassBtn"><i class="fa-solid fa-eye"></i></button>
+        <button type="button" id="hideConfirmPassBtn"><i class="fa-solid fa-eye-slash"></i></button>
         <input type="submit" id="changePassSubmit" value="Change password" onclick='checkPass()'>
     </form>
     <i class="fa-solid fa-check" id="check"></i>
 </div>
 
+<script>
+    //Made it here to make it works bc it won't work if put above.
+    //newPass:
+    document.getElementById("showPassBtn").addEventListener('click',function () {
+        document.getElementById("showPassBtn").style.display="none";
+        document.getElementById("hidePassBtn").style.display="block";
 
+        document.getElementById("newPass").type="text";
+    })
+
+    document.getElementById("hidePassBtn").addEventListener('click',function () {
+        document.getElementById("showPassBtn").style.display="block";
+        document.getElementById("hidePassBtn").style.display="none";
+
+        document.getElementById("newPass").type="password";
+    })
+
+    //confirmNewPass:
+    document.getElementById("showConfirmPassBtn").addEventListener('click',function () {
+        document.getElementById("showConfirmPassBtn").style.display="none";
+        document.getElementById("hideConfirmPassBtn").style.display="block";
+
+        document.getElementById("confirmPass").type="text";
+    })
+    document.getElementById("hideConfirmPassBtn").addEventListener('click',function () {
+        document.getElementById("showConfirmPassBtn").style.display="block";
+        document.getElementById("hideConfirmPassBtn").style.display="none";
+
+        document.getElementById("confirmPass").type="password";
+    })
+</script>
 </body>
 </html>
