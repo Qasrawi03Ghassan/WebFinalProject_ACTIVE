@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Najah restaurant log-in</TITLE>
     <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
 
@@ -19,7 +20,7 @@
 
         function login()
         {
-            window. open ("main%20page.html", "1");
+            window. open ("main%20page.php", "1");
         }
 
         function changesize()
@@ -86,6 +87,18 @@
         border-radius: 7px;
         border: 0;
     }
+    #showPassBtn,#hidePassBtn{
+        font-size: 18px;
+        position: absolute;
+        right: 75px;
+        top: 5px;
+        cursor: pointer;
+        background-color: white;
+        border: none;
+    }
+    #hidePassBtn{
+        display: none;
+    }
 </style>
 
     <style>
@@ -126,6 +139,8 @@
     </div>
     <div class="inputname" style ="top:46%" >
          Password:<span>  &nbsp</span><input id="password" type ="password"  placeholder="enter password here..." >
+        <button type="button" id="showPassBtn"><i class="fa-solid fa-eye"></i></button>
+        <button type="button" id="hidePassBtn"><i class="fa-solid fa-eye-slash"></i></button>
     </div>
     <div style ="position: absolute; width: 100%; top :58%; height:35px; left:26.2%" >
 
@@ -146,5 +161,22 @@
         <a href="create%20account%20page.html" target="0">make a new account</a>
     </div>
 </div>
+<script>
+    const showPassBtn = document.getElementById("showPassBtn");
+    const hidePassBtn = document.getElementById("hidePassBtn");
+
+    showPassBtn.addEventListener('click',function () {
+        showPassBtn.style.display="none";
+        hidePassBtn.style.display="block";
+
+        document.getElementById("password").type="text";
+    })
+    hidePassBtn.addEventListener('click',function () {
+        showPassBtn.style.display="block";
+        hidePassBtn.style.display="none";
+
+        document.getElementById("password").type="password";
+    })
+</script>
 </BODY>
 </HTML>
