@@ -1,6 +1,25 @@
 <?php
-    if(isset($_POST['genCode'])) {
-        if (isset($_POST['email'])) {
+//The comments below are required, don't change them
+
+    //Connection to db:
+    $db_server = "localhost";
+    $db_username = "root";
+    $db_password = "";
+    $db_name = "webfinalproject_db";
+    $conn = "";
+
+    try {
+        $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name);
+    }catch(mysqli_sql_exception){
+        echo "Connection failed.<br>";
+    }
+
+    if($conn){
+        echo "connection to database is successful.<br>";
+    }
+
+    //if(isset($_POST['genCode'])) {
+        //if (isset($_POST['email'])) {
             $userEmail = $_POST['email'];
 
             $to = $userEmail;
@@ -15,19 +34,15 @@
             } else {
                 echo "email sending failed!\n";
             }
-        }
-    }
-    if(isset($_POST['userNewPass'])) {
+        //}
+    //}
+    //if(isset($_POST['userNewPass'])) {
         //Change password in database here
+        $newPass = $_POST['newPass'];
         //echo $_POST['userNewPass']; just for checking
+        $qry = "UPDATE `users` SET `Password` = SHA1('$newPass') WHERE `users`.`Email` = '$userEmail'";
 
+        $result = mysqli_query($conn, $qry);
 
-
-
-
-
-
-
-
-
-    }
+    //}
+    mysqli_close($conn);

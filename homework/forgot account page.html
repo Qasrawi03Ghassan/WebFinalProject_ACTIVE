@@ -340,6 +340,13 @@
 
         document.getElementById("confirmPass").type="password";
     })
+
+    $("#newPass").bind("cut copy paste",function (e){
+        e.preventDefault();
+    })
+    $("#confirmPass").bind("cut copy paste",function (e){
+        e.preventDefault();
+    })
 </script>
 </body>
 </html>
