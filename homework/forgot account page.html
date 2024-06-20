@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Account recovery</title>
     <style>
         span,h1,#emailSubmit,#afterCode,#codeSubmit,#changePassSubmit{
@@ -55,6 +57,7 @@
             width: 70%;
             height: 30px;
             border-radius: 7px;
+            font-size: 15px;
         }
         #emailSubmit,#codeSubmit,#changePassSubmit{
             margin-top: 10px;
@@ -73,9 +76,15 @@
             cursor: pointer;
             background-color: rgb(67, 69, 79);
         }
-        #emailSubmit:active,#codeSubmit:active,#changePassSubmit:active{
+        #emailSubmit:active,#codeSubmit:active{
             color: black;
             background-color: white;
+            margin-top: 15px;
+        }
+        #changePassSubmit:active{
+            background-color: white;
+            color: black;
+            margin-top: 25px;
         }
         #afterCode{
             visibility: hidden;
@@ -99,29 +108,71 @@
     #newPassTxt{
         display: block;
     }
+    #check{
+        color: white;
+        font-size: 60px;
+        background-color: rgb(249,192,46);
+        width: 70px;
+        height: 70px;
+        border-radius: 15px;
+        position: absolute;
+        top: 250px;
+        left:210px;
+        transition: opacity 0.5s ease,visibility 1s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
 
+    #showPassBtn,#hidePassBtn{
+        position: absolute;
+        right: 95px;
+        top: 109px;
+        background-color: white;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    #showConfirmPassBtn,#hideConfirmPassBtn{
+        position: absolute;
+        right: 95px;
+        top: 206px;
+        background-color: white;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    #hidePassBtn,#hideConfirmPassBtn{
+        display: none;
+    }
     </style>
     <script>
 
-        function sendCode(eValue){
-            /*code to send the code :D*/
+        let genCode = Math.floor(Math.random()*900000)+100000;
 
-            showAfterCode();
+        function checkEmail(email){
+            if(email.includes("@") && email.split("@")[1].includes(".com")){
+                return true;
+            }else {
+                return false;
+            }
         }
+
+        function sendCode(eValue){
+            if(checkEmail(eValue)){
+                showAfterCode();
+            }else if(eValue !==""){
+                window.alert("Please enter a valid email address!");
+            }
+        }
+
         function showAfterCode(){
             if( document.getElementById("UserEmail").value !== ""){
                 document.getElementById("container").style.height="500px";
                 document.getElementById("afterCode").style.visibility="visible";
                 document.getElementById("afterCode").style.opacity="1";
             }else{
-                window.alert("Please enter a valid email address first!")
+                //let it blank so it won't change layout
             }
-        }
-        function checkCode(cValue){
-            /*Checking functionality*/
-
-
-        showNewPass(cValue);
         }
 
         function showNewPass(c){
@@ -137,36 +188,94 @@
                 document.getElementById("passCont").style.height="350px";
 
             }else{
-                window.alert("Please enter a valid code!")
+                //let blank so it won't change layout
             }
 
         }
+
         function checkPass(){
             let newPass = document.getElementById("newPass").value;
             let confirmPass = document.getElementById("confirmPass").value;
 
-            if(newPass === "" && confirmPass === ""){
-                window.alert("Please enter a new password and confirm it!")
+            if(newPass == "" || confirmPass == ""){
+                //window.alert("Please enter a new password and confirm it!");
             }else{
-                if(newPass === confirmPass){
+                if(newPass.length < 8 || confirmPass.length < 8){
+                    //window.alert("Please enter at least 8 characters!");
+                }
+                else if(newPass == confirmPass){
+                    //Changing the password in database is done in php server
 
-                    changePass(newPass);
+                    submitPass();
 
-                    window.alert("Password changed successfully!\nRedirecting you to login page!");
-                    window.close();
-                    window.open("index.html");
+                    setTimeout(function (){
+                        //window.open("index.html","1"); No need for this.
+                        window.close();
+                    },2000)
                 }else{
                     window.alert("Please enter the same values for both field!");
                 }
             }
         }
-        function changePass(p){
-            /*code to change password*/
+        function submitPass(){
+            const sBtn = document.getElementById("changePassSubmit");
+            const checkIcon = document.getElementById("check");
 
+            sBtn.style.transition="visibility 1s ease,opacity 1s ease";
+            sBtn.style.opacity="0";
+            sBtn.style.visibility="hidden";
 
-
-
+            checkIcon.style.visibility="visible";
+            checkIcon.style.opacity="1";
         }
+
+
+        $(document).ready(function (){
+            $("#emailForm").submit(function (event) {
+                event.preventDefault();
+                var email = document.getElementById("UserEmail").value;
+
+                //console.log(genCode); // Used for checking only
+
+                $.post("forgotPassProcess.php",{email:email,genCode:genCode},function (data) {
+                    console.log(data); // Not important, just to check if email is sent successfully or not.
+                })
+            })
+        })
+
+        $(document).ready(function () {
+            $("#codeForm").submit(function(event){
+                event.preventDefault();
+                var code = document.getElementById("UserCode").value;
+              $.post("forgotPassProcess.php",{code:code},function (data){
+                 // console.log(data); Not important, just to check if code is sent successfully or not.
+              });
+            })
+        })
+        function checkCode(cValue){
+            /*Checking functionality*/
+            if(genCode != cValue && cValue != ""){//Dont ch
+                //alert("Invalid code!\n"+"GenCode: "+genCode+"\nUserCode: "+cValue);
+                alert("Invalid code!");
+            }else {
+                showNewPass(cValue);
+            }
+        }
+
+        $(document).ready(function () {
+            $("#passForm").submit(function (evt) {
+                evt.preventDefault();
+                if(document.getElementById("newPass").value == document.getElementById("confirmPass").value){
+                    var userNewPass = document.getElementById("newPass").value;
+
+                    $.post("forgotPassProcess.php",{userNewPass:userNewPass},function (data){
+                        console.log(data);
+                    });
+                }
+            })
+        })
+
+
     </script>
 </head>
 <body>
@@ -174,27 +283,70 @@
     <h1>Account recovery</h1>
     <span id="emailEnter">Please enter a valid email address below to send you a verification code</span>
     <div id="formContainer">
-        <form action="forgot%20account%20page.html" method="post">
-            <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" placeholder="enter your email here..." maxlength="30" required>
-            <input type="button" id="emailSubmit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
+        <form method="post" id="emailForm">
+            <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" name="email" placeholder="enter your email here..." maxlength="30" title="Enter your email." required>
+            <input type="submit" id="emailSubmit" name="submit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
+        </form>
+        <form method="post" id="codeForm">
             <div id="afterCode" class="showSlower hidden">
-                    <span id="codeTxt">code was sent successfully!<br><br>Code:&nbsp</span><input type="password" id="UserCode" placeholder="enter the code we sent you here..." pattern="[0-9]{6}" minlength="6" maxlength="6" required>
-                    <input type="button" id="codeSubmit" value="Submit code" onclick='checkCode(document.getElementById("UserCode").value)'>
+                    <span id="codeTxt">code was sent successfully!<br><br>Code:&nbsp</span><input type="password" id="UserCode" placeholder="enter the code we sent you here..." pattern="[0-9]{6}" minlength="6" maxlength="6" title="Enter the sent code please..." required>
+                    <input type="submit" id="codeSubmit" name="codeS" value="Submit code" onclick='checkCode(document.getElementById("UserCode").value)'>
             </div>
         </form>
     </div>
 </div>
 <div id="passCont" align="center" class="showPass">
     <h1 style="font-size: 30px">Create new password</h1>
-    <form action="forgot%20account%20page.html" method="post">
-        <span id="newPassTxt">New Password</span><input type="password" id="newPass" placeholder="enter your new password here..." required>
+    <form method="post" id="passForm">
+        <span id="newPassTxt">New Password</span><input type="password" id="newPass" placeholder="enter your new password here..." title="At least 8 characters required" minlength="8" required>
+        <button type="button" id="showPassBtn"><i class="fa-solid fa-eye"></i></button>
+        <button type="button" id="hidePassBtn"><i class="fa-solid fa-eye-slash"></i></button>
         <br><br><br>
-        <span id="confirmPassTxt">Confirm new Password</span><input type="password" id="confirmPass" placeholder="re-enter your new password here..." required>
-        <input type="button" id="changePassSubmit" value="Change password" onclick='checkPass(document.getElementById("newPass").value)'>
+        <span id="confirmPassTxt">Confirm new Password</span><input type="password" id="confirmPass" placeholder="re-enter your new password here..." title="At least 8 characters required" minlength="8" required>
+        <button type="button" id="showConfirmPassBtn"><i class="fa-solid fa-eye"></i></button>
+        <button type="button" id="hideConfirmPassBtn"><i class="fa-solid fa-eye-slash"></i></button>
+        <input type="submit" id="changePassSubmit" value="Change password" onclick='checkPass()'>
     </form>
-
+    <i class="fa-solid fa-check" id="check"></i>
 </div>
 
+<script>
+    //Made it here to make it works bc it won't work if put above.
+    //newPass:
+    document.getElementById("showPassBtn").addEventListener('click',function () {
+        document.getElementById("showPassBtn").style.display="none";
+        document.getElementById("hidePassBtn").style.display="block";
 
+        document.getElementById("newPass").type="text";
+    })
+
+    document.getElementById("hidePassBtn").addEventListener('click',function () {
+        document.getElementById("showPassBtn").style.display="block";
+        document.getElementById("hidePassBtn").style.display="none";
+
+        document.getElementById("newPass").type="password";
+    })
+
+    //confirmNewPass:
+    document.getElementById("showConfirmPassBtn").addEventListener('click',function () {
+        document.getElementById("showConfirmPassBtn").style.display="none";
+        document.getElementById("hideConfirmPassBtn").style.display="block";
+
+        document.getElementById("confirmPass").type="text";
+    })
+    document.getElementById("hideConfirmPassBtn").addEventListener('click',function () {
+        document.getElementById("showConfirmPassBtn").style.display="block";
+        document.getElementById("hideConfirmPassBtn").style.display="none";
+
+        document.getElementById("confirmPass").type="password";
+    })
+
+    $("#newPass").bind("cut copy paste",function (e){
+        e.preventDefault();
+    })
+    $("#confirmPass").bind("cut copy paste",function (e){
+        e.preventDefault();
+    })
+</script>
 </body>
 </html>

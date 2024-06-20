@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>najah restaurant</title>
+    <title>Najah restaurant</title>
     <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
 
 
