@@ -291,6 +291,11 @@
             clearTimeout(myTimeout);
         }
 
+        function opencart()
+        {
+            window. open ("shopping%20cart.php", "1");
+        }
+
 
     </script>
 
@@ -562,7 +567,7 @@
 
 
 
-<IMG SRC="images/shopping_cart.png" WIDTH="width" HEIGHT="height"  title="shopping cart" style="top :3%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b;">
+<IMG onclick="opencart()" SRC="images/shopping_cart.png" WIDTH="width" HEIGHT="height"  title="shopping cart" style="top :3%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b;">
 
 <IMG SRC="images/profilepic.png" onmouseover="showprofileinfo()" WIDTH="width" HEIGHT="height" ALT="Image Text" style="top :3%; left : 3%; position : absolute; z-index: 10">
 <div  onmouseleave="hideprofileinfo()"  onmouseover="showprofileinfo()" style="visibility: hidden;top :3%; left : 2.7%; position : absolute; background-color: #1b1c24; text-align: center; border-radius: 25px; width: 6%; height: 20%; z-index: -10;" id="profileinfo">
