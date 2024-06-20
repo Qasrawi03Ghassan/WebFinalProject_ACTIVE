@@ -158,7 +158,7 @@
                 echo "<td style='font-family: $font;color: white;font-size: 20px;width: 15px'>".$i.") "."</td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->name'></td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->type'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;width: 35px;text-align: center' placeholder='$x->price'></td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='number' step='1' min='0'' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$x->price'></td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->image'></td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;text-align: center;background-color: orange;color: white' class='sBtn'>Submit</button</td>";
                 echo "</tr>";
@@ -167,7 +167,7 @@
             echo "<td style='font-family: $font;color: white;font-size: 15px;width: 15px'>New dish</td>";
             echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center;tex' placeholder='enter dish name here'></td>";
             echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='enter dish type here'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;width: 35px;text-align: center' placeholder='$'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='number' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$'></td>";
             echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='enter dish image url here'></td>";
             echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;background-color: orange;color: white' class='sBtn'>Add dish</button</td>";
             echo "</table>";
@@ -266,7 +266,7 @@
                 echo "<td style='font-family: $font;color: white;font-size: 20px;width: 15px'>".$i.") "."</td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->name'></td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->type'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;width: 40px;text-align: center' placeholder='$x->price'></td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='number' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$x->price'></td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><textarea style='border-radius: 10px;font-family: $font;text-align: center;resize: none;height: 60px' placeholder='$x->dishes'></textarea></td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;text-align: center;background-color: orange;color: white;font-size: 25px' class='sBtn'>Submit</button</td>";
                 echo "</tr>";
@@ -275,7 +275,7 @@
             echo "<td style='font-family: $font;color: white;font-size: 15px;width: 15px'>New deal</td>";
             echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center;' placeholder='enter deal name here'></td>";
             echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='enter deal type here'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;width: 40px;text-align: center' placeholder='$'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='number' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$'></td>";
             echo "<td style='font-family: $font;color: white;font-size: 20px'><textarea style='border-radius: 10px;font-family: $font;text-align: center;height: 60px;resize: none' placeholder='enter deal description here'></textarea></td>";
             echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;background-color: orange;color: white;font-size: 25px' class='sBtn'>Add deal</button</td>";
             echo "</table>";
