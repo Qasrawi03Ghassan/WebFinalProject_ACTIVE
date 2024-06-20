@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>najah restaurant</title>
+    <title>Najah restaurant</title>
     <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
 
 
     <style>
-
 
         .progress .bar {
             -webkit-transition: none;
@@ -17,7 +16,7 @@
             transition: none;}
 
 
-        html {
+            html {
             scroll-behavior: smooth;
         }
         body{
@@ -40,15 +39,15 @@
         }
         .textstyle{
 
-            font-size: 150%;
+           font-size: 150%;
             background: rgba(27, 28, 36, 0.3);
 
         }
 
 
-        a:link{color: white;}
-        a:hover{color: orange;
-            cursor: pointer;}  /*Changed from none to pointer by Ghassan*/
+            a:link{color: white;}
+            a:hover{color: orange;
+                cursor: pointer;}  /*Changed from none to pointer by Ghassan*/
 
         div.section1image{
 
@@ -61,18 +60,6 @@
             left: 3%; width:30%; height:20%; z-index: -10;
 
         }
-        span.salesspan{
-            position: absolute;
-            width: 60%;
-            height: 90%;
-            top:5%;
-            border-radius: 25px;
-            background-color: #1b1c24;
-        }
-
-        .salesdesc{
-            position: absolute; font-size: 150%; text-align: center; background-color: #23252e; color: white;  left:66%; border-radius: 25px; top: 2%; height: 96%; width: 30%
-        }
 
 
 
@@ -81,7 +68,7 @@
 
             0% { left: 20%; width: 60%; height: 40% ;z-index: 10; top: 8%;visibility: unset}
             25% { left: 20%; width: 60%; height: 40% ;z-index: 10;top: 8%}
-            /*  32%{opacity: 0.9; left: 16%} 34%{opacity: 0.7; left: 12%} 36%{opacity: 0.5; left: 8%}38%{opacity: 0.3; left:4%}*/
+          /*  32%{opacity: 0.9; left: 16%} 34%{opacity: 0.7; left: 12%} 36%{opacity: 0.5; left: 8%}38%{opacity: 0.3; left:4%}*/
             35% { left: 0%;visibility: hidden; width: 30%; height: 20%;top:17%}
             89%{visibility: hidden}
             90% { left: 70%; width: 30%; height: 20% ;z-index: 10;top: 17%; visibility: unset}
@@ -110,8 +97,6 @@
             100%{visibility: hidden}
 
         }
-
-
 
 
 
@@ -152,7 +137,7 @@
         }
 
 
-        function show_return(){
+            function show_return(){
             if(window.scrollY>300) {
                 document.getElementById("return").style.display = "block"
             }
@@ -201,19 +186,19 @@
             switch(num) {
                 case 1:
                     if( "block" == document.getElementById("home").style.display)
-                        document.getElementById("homebt").style.color="orange";
+                    document.getElementById("homebt").style.color="orange";
                     break;
                 case 2:
                     if( "block" == document.getElementById("menu").style.display)
-                        document.getElementById("menubt").style.color="orange";
+                    document.getElementById("menubt").style.color="orange";
                     break;
                 case 3:
                     if( "block" == document.getElementById("sales").style.display)
-                        document.getElementById("salesbt").style.color="orange";
+                    document.getElementById("salesbt").style.color="orange";
                     break;
                 case 4:
                     if( "block" == document.getElementById("contact").style.display)
-                        document.getElementById("contactbt").style.color="orange";
+                    document.getElementById("contactbt").style.color="orange";
                     break;
 
                 default:
@@ -245,53 +230,6 @@
             document.getElementById('profileinfo').style.visibility='hidden';
         }
 
-        function hoverdish(id)
-        {
-
-            alert('sdsd');
-            document.getElementById(id).style.height='4200px';
-            document.getElementById(id).style.width='2800px';
-
-        }
-
-        function unhoverdish(id)
-        {
-
-            document.getElementById(id).style.height='4000px';
-            document.getElementById(id).style.width='2600px';
-
-        }
-
-        function s1(){document.getElementById('dishscroll').scrollTo(600, 0)}
-        function s2(){document.getElementById('dishscroll').scrollTo(1200, 0)}
-        function s3(){document.getElementById('dishscroll').scrollTo(0, 0)}
-
-        let breakfun=false;
-        function sidescroll(){
-
-            if(breakfun)
-                return;
-            window.setInterval(s1, 5000);
-
-            if(breakfun)
-                return;
-            window.setInterval(s2, 10000);
-
-            if(breakfun)
-                return;
-            window.setInterval(s3, 15000);
-
-            if(breakfun)
-                return;
-
-        }
-
-        const myTimeout = setTimeout(sidescroll, 15000)
-        function myStopFunction() {
-            clearTimeout(myTimeout);
-        }
-
-
     </script>
 
 
@@ -305,7 +243,7 @@
     <tr>
         <td class="textstyle" id="homebt" onclick="choose_section(1)" onmouseleave="unhover(1) " style="color: orange"> <a > home </a> </td>
         <td class="textstyle" id="menubt" onclick="choose_section(2)" onmouseleave="unhover(2)"> <a>menu</a></td>
-        <td class="textstyle" id="salesbt" onclick="choose_section(3)" onmouseleave="unhover(3)"> <a>deals</a></td>
+        <td class="textstyle" id="salesbt" onclick="choose_section(3)" onmouseleave="unhover(3)"> <a>sales</a></td>
         <td class="textstyle" id="contactbt" onclick="choose_section(4)" onmouseleave="unhover(4)"> <a>contact</a></td>
 
 
@@ -327,7 +265,7 @@
 
     <div class="section1image" style=" animation-name: transition1; visibility: hidden; ">
 
-        <img src="images/burgersale.png" style="  max-height: 120%; left:4%; position: absolute;">
+     <img src="images/burgersale.png" style="  max-height: 120%; left:4%; position: absolute;">
     </div>
     <div class="section1image" style=";animation-name: transition2; visibility: hidden">
         <img src="images/kindpng_3844221.png" style="  max-height: 120%; left:10%;  position: absolute;">
@@ -338,7 +276,7 @@
     </div>
 
     <div style="position: absolute; left: 20%; top: 62%; height: 40%; width:60%; text-align: center">
-        <img src="images/qrcode.png" style=" max-height: 120%">
+    <img src="images/qrcode.png" style=" max-height: 120%">
         <h1 style="; left: 65%;  top:10%; font-size:200%; color: white;font-family: 'Libre Baskerville'; "> Visit our <br> mobile site!</h1>
 
 
@@ -350,214 +288,182 @@
 
 <section style="display: none; height: 140%" id="menu">
     <form method="post" action="main%20page.php" id="dishform">
-        <table  style ="position: absolute; width :80%; top:1.5%; left: 5%; align-content: center; color: white;text-align: center; table-layout: fixed">
-            <tr>
+    <table  style ="position: absolute; width :80%; top:1.5%; left: 5%; align-content: center; color: white;text-align: center; table-layout: fixed">
+        <tr>
 
-                <td  class="textstyle" id="alldish" style="color: orange;background-color: #23252e; border-top-left-radius: 10px;border-bottom-left-radius: 10px" onclick="changedishes('all')" > <a > all </a></td>
-                <td class="textstyle" id="maindish"  style=" background-color: #23252e" onclick="changedishes('main')"> <a > main dishes </a> </td>
-                <td class="textstyle" id="sides" style="background-color: #23252e"  onclick="changedishes('side')"> <a > sides </a></td>
-                <td class="textstyle" id="drinks" style="background-color: #23252e" onclick="changedishes('drink')" > <a > drinks </a></td>
-                <td> <input type="search" placeholder="find your favourite dish!" style="width: 120%;height: 30px; background-color: rgba(35,37,46,0.76); color: white;" name="searchresult"> </td>
-                <input type="submit" value="a" name="searched" style=" font-size: 0%; position: absolute; height: 30px; width: 33px; left:88%; top:1.7%; background-image: url('images/search.png'); background-color: #23252e" >
-                <input type="hidden" name="typeresult" value="all" id="typeresult">
+            <td  class="textstyle" id="alldish" style="color: orange;background-color: #23252e; border-top-left-radius: 10px;border-bottom-left-radius: 10px" onclick="changedishes('all')" > <a > all </a></td>
+            <td class="textstyle" id="maindish"  style=" background-color: #23252e" onclick="changedishes('main')"> <a > main dishes </a> </td>
+            <td class="textstyle" id="sides" style="background-color: #23252e"  onclick="changedishes('side')"> <a > sides </a></td>
+            <td class="textstyle" id="drinks" style="background-color: #23252e" onclick="changedishes('drink')" > <a > drinks </a></td>
+            <td> <input type="search" placeholder="find your favourite dish!" style="width: 120%;height: 30px; background-color: rgba(35,37,46,0.76); color: white;" name="searchresult"> </td>
+            <input type="submit" value="a" name="searched" style=" font-size: 0%; position: absolute; height: 30px; width: 33px; left:88%; top:1.7%; background-image: url('images/search.png'); background-color: #23252e" >
+            <input type="hidden" name="typeresult" value="all" id="typeresult">
 
-            </tr>
-        </table>
+        </tr>
+    </table>
     </form>
-    <div style=" position:absolute; width: 100% ;overflow-y: auto; height: 90%; top:7%; sc">
-        <?php
-        error_reporting(E_ERROR | E_PARSE);
-        class dish{
-            public $name;
-            public $type;
-            public $price;
-            public $image;
-            public $description;
-            function __construct($name, $type, $price, $image, $description){
-                $this->name= $name;
-                $this->type= $type ;
-                $this->price =  $price;
-                $this->image =  $image ;
-                $this->description = $description;
+    <div style=" position:absolute; width: 100% ;overflow-y: auto; height: 90%; top:7%">
+    <?php
+    error_reporting(E_ERROR | E_PARSE);
+    class dish{
+        public $name;
+        public $type;
+        public $price;
+        public $image;
+        function __construct($name, $type, $price, $image){
+            $this->name= $name;
+            $this->type= $type ;
+            $this->price =  $price;
+            $this->image =  $image ;
+        }
+
+
+    }
+    $pizza = new dish('pizza','main',20.0,'images/dishpizza.png');
+    $burger = new dish('burger','main',30.0,'images/dishburger.png');
+    $salad = new dish('salad','side',20.0,'images/dishsalad.png') ;
+    $cola = new dish('cola','drink',2.0,'images/cola.png') ;
+
+    $dishes = array( $pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
+
+
+    $font ='Libre Baskerville';
+    $id1 ='id';
+    $id2='id';
+
+
+    echo "<table id='dishtable' style=';position: absolute; width: 90%; left: 5%; top: 0%; align-content: flex-start; height: 3000px; background-color: #1b1c24; scroll-behavior: smooth;'>";
+    $num =0;
+
+
+     $chosentype= $_POST['typeresult'];
+     $chosensearch = $_POST['searchresult'];
+    if (empty($chosentype))
+    {
+        $chosentype='all';
+    }
+
+
+    foreach ($dishes as $x) {
+
+        $id1=$num.'price';
+        $id2=$num.'amount';
+        if(empty($chosensearch)){
+        if($x->type==$chosentype || $chosentype=='all') {
+            if ((($num % 4) == 0) && (!$num == 0)) {
+                echo "<tr> ";
             }
+            echo "<td  style='; position: relative '> 
+            <div style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
 
-
-        }
-        $pizza = new dish('pizza','main',20.0,'images/dishpizza.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
-        $burger = new dish('burger','main',30.0,'images/dishburger.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
-        $salad = new dish('salad','side',20.0,'images/dishsalad.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
-        $cola = new dish('cola','drink',2.0,'images/cola.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
-        $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
-
-        $dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
-
-
-        $font ='Libre Baskerville';
-        $id1 ='id';
-        $id2='id';
-
-
-        echo "<table id='dishtable' style=';position: absolute; width: 90%; left: 5%; top: 0%; align-content: flex-start; height: 3000px; background-color: #1b1c24; scroll-behavior: smooth;'>";
-        $num =0;
-
-
-        $chosentype= $_POST['typeresult'];
-        $chosensearch = $_POST['searchresult'];
-        if (empty($chosentype))
-        {
-            $chosentype='all';
-        }
-
-
-        foreach ($dishes as $x) {
-
-            $id1=$num.'price';
-            $id2=$num.'amount';
-            $id3=$num.'disharea';
-            if(empty($chosensearch)){
-                if($x->type==$chosentype || $chosentype=='all') {
-                    if ((($num % 4) == 0) && (!$num == 0)) {
-                        echo "<tr> ";
-                    }
-                    echo "<td  style='; position: relative '> 
-            <div   style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
-
-            <img  src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
+            <img src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
 
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
-            <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
+            <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing</p>
           <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->price  </b>$</button>
           <input type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
        
             </div>
          </td>";
 
-                    if ((($num + 1 % 4) == 0) && (!$num == 0)) {
-                        echo "</tr>";
-                    }
-
-                    $num++;
-                }
+            if ((($num + 1 % 4) == 0) && (!$num == 0)) {
+                echo "</tr>";
             }
-            else{
-                if($x->name==$chosensearch) {
-                    if ((($num % 4) == 0) && (!$num == 0)) {
-                        echo "<tr> ";
-                    }
-                    echo "<td  style='; position: relative '> 
-            <div  style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
 
-            <img   src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
+        $num++;
+            }
+        }
+        else{
+            if($x->name==$chosensearch) {
+                if ((($num % 4) == 0) && (!$num == 0)) {
+                    echo "<tr> ";
+                }
+                echo "<td  style='; position: relative '> 
+            <div style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
+
+            <img src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
 
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
             <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing</p>
-          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->description </b>$</button>
+          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->price  </b>$</button>
           <input type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
        
             </div>
          </td>";
 
-                    if ((($num + 1 % 4) == 0) && (!$num == 0)) {
-                        echo "</tr>";
-                    }
-
-                    $num++;
+                if ((($num + 1 % 4) == 0) && (!$num == 0)) {
+                    echo "</tr>";
                 }
 
+                $num++;
             }
+
         }
+    }
 
 
-        echo "</table>";
+    echo "</table>";
 
-        if($num<=25)
-        {
-            echo" <script>
+    if($num<=25)
+    {
+        echo" <script>
               document.getElementById('dishtable').style.height='2500px';
               </script>
             ";
-        }
-        if($num<=16)
-        {
-            echo" <script>
+    }
+    if($num<=16)
+    {
+        echo" <script>
               document.getElementById('dishtable').style.height='1800px';
               </script>
             ";
-        }
+    }
 
-        if($num<=12)
-        {
-            echo" <script>
+    if($num<=12)
+    {
+        echo" <script>
               document.getElementById('dishtable').style.height='1400px';
               </script>
             ";
-        }
+    }
 
-        if($num<=8)
-        {
-            echo" <script>
+    if($num<=8)
+    {
+        echo" <script>
               document.getElementById('dishtable').style.height='1000px';
               </script>
             ";
-        }
-        if($num>=31)
-        {
-            echo" <script>
+    }
+    if($num>=31)
+    {
+        echo" <script>
               document.getElementById('dishtable').style.height='3800px';
               </script>
             ";
-        }
-        ?>
+    }
+    ?>
     </div>
+
+
+
+
+
 
 </section>
 
 <section style="display: none" id="sales">
 
-    <p style="text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 1.2%;"> limited time deals: </p>
-
-    <div  id='dishscroll' onmouseover="breakfun=true;" onmouseleave="breakfun=false;" style="scroll-behavior: smooth;position: absolute; top: 5%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%;">
-
-
-        <span class='salesspan' style=" left: 2.5%">
-        <img src="images/burgersale.png" style="max-height: 100%; max-width: 70%">
-            <div class="salesdesc">
-                <br> <br> <b style="color: orange; font-size: 200%"> save 50%</b> <br> <br> <b>4</b> burgers <br> <br> <b>2</b> cola <br> <br> <b>1</b> fries <br> <br> <b>1</b> salad <br>
-              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 82  </b>$</button>
-            </div>
-        </span>
-
-        <span class='salesspan' style=" left: 65%">
-        <img src="images/pizza.png" style="max-height: 100%; max-width: 70%">
-            <div class="salesdesc"  >
-                <br> <br> <b style="color: orange; font-size: 200%"> save 40%</b> <br> <br> <b>1</b> large pizza <br> <br> <b>2</b> cola <br> <br> <b>1</b> fries <br> <br>
-              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 38.5  </b>$</button>
-            </div>
-        </span>
-
-        <span class='salesspan' style=" left: 127.5%">
-        <img src="images/kindpng_3844221.png" style="max-height: 100%; max-width: 70%">
-            <div class="salesdesc"  >
-                <br> <br> <b style="color: orange; font-size: 200%"> save 30%</b> <br> <br> <b>3</b> chicken meals <br> <br> <b>2</b> cola <br> <br> <b>2</b> fries <br> <br> <b>1</b> salad <br>
-              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 108  </b>$</button>
-            </div>
-        </span>
-        <div style="position: absolute; left: 187.5%; width: 2.5%; height: 100%"> </div>
-    </div>
-    <p style="text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 41.2%;"> deals: </p>
-
-
-
+    test2
 </section>
 
 <section style="display: none; height: 40%" id="contact">
-    <p style="color: white; font-size: 140%; left: 5%;top:5%; position: absolute">
-        this is a project made for the web development course at najah university.<br> <br>
-        you can contact us at <a href= "mailto: NajahRestproj@gmail.com">NajahRestproj@gmail.com</a> for any customer feedback, <br> <br>
-        or you can directly contact the developers of the site at <br> <br> <a href= "mailto: s12112188@stu.najah.edu">s12112188@stu.najah.edu.</a> <br> <a href= "mailto: s12111991@stu.najah.edu">s12111991@stu.najah.edu</a>. <br> <br>
-        all feedback is appreciated and we hope the site proves useful for you!
+<p style="color: white; font-size: 140%; left: 5%;top:5%; position: absolute">
+    this is a project made for the web development course at najah university.<br> <br>
+    you can contact us at <a href= "mailto: NajahRestproj@gmail.com">NajahRestproj@gmail.com</a> for any customer feedback, <br> <br>
+    or you can directly contact the developers of the site at <br> <br> <a href= "mailto: s12112188@stu.najah.edu">s12112188@stu.najah.edu.</a> <br> <a href= "mailto: s12111991@stu.najah.edu">s12111991@stu.najah.edu</a>. <br> <br>
+    all feedback is appreciated and we hope the site proves useful for you!
 
-    </p>
+</p>
 </section>
 
 
@@ -585,7 +491,7 @@ if(!empty($check)|| !empty($check2))
     ";
     if($check=='all')
     {
-        echo" <script> 
+       echo" <script> 
             document.getElementById('alldish').style.color='orange'
             document.getElementById('maindish').style.color='white'
             document.getElementById('sides').style.color='white'
