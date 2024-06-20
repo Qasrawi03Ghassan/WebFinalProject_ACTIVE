@@ -8,6 +8,7 @@
 
     <style>
 
+
         .progress .bar {
             -webkit-transition: none;
             -moz-transition: none;
@@ -60,6 +61,18 @@
             left: 3%; width:30%; height:20%; z-index: -10;
 
         }
+        span.salesspan{
+            position: absolute;
+            width: 60%;
+            height: 90%;
+            top:5%;
+            border-radius: 25px;
+            background-color: #1b1c24;
+        }
+
+        .salesdesc{
+            position: absolute; font-size: 150%; text-align: center; background-color: #23252e; color: white;  left:66%; border-radius: 25px; top: 2%; height: 96%; width: 30%
+        }
 
 
 
@@ -97,6 +110,8 @@
             100%{visibility: hidden}
 
         }
+
+
 
 
 
@@ -230,6 +245,53 @@
             document.getElementById('profileinfo').style.visibility='hidden';
         }
 
+        function hoverdish(id)
+        {
+
+            alert('sdsd');
+            document.getElementById(id).style.height='4200px';
+            document.getElementById(id).style.width='2800px';
+
+        }
+
+        function unhoverdish(id)
+        {
+
+            document.getElementById(id).style.height='4000px';
+            document.getElementById(id).style.width='2600px';
+
+        }
+
+        function s1(){document.getElementById('dishscroll').scrollTo(600, 0)}
+        function s2(){document.getElementById('dishscroll').scrollTo(1200, 0)}
+        function s3(){document.getElementById('dishscroll').scrollTo(0, 0)}
+
+        let breakfun=false;
+        function sidescroll(){
+
+                    if(breakfun)
+                        return;
+                    window.setInterval(s1, 5000);
+
+                    if(breakfun)
+                        return;
+                    window.setInterval(s2, 10000);
+
+                    if(breakfun)
+                        return;
+                    window.setInterval(s3, 15000);
+
+                     if(breakfun)
+                        return;
+
+        }
+
+        const myTimeout = setTimeout(sidescroll, 15000)
+        function myStopFunction() {
+            clearTimeout(myTimeout);
+        }
+
+
     </script>
 
 
@@ -243,7 +305,7 @@
     <tr>
         <td class="textstyle" id="homebt" onclick="choose_section(1)" onmouseleave="unhover(1) " style="color: orange"> <a > home </a> </td>
         <td class="textstyle" id="menubt" onclick="choose_section(2)" onmouseleave="unhover(2)"> <a>menu</a></td>
-        <td class="textstyle" id="salesbt" onclick="choose_section(3)" onmouseleave="unhover(3)"> <a>sales</a></td>
+        <td class="textstyle" id="salesbt" onclick="choose_section(3)" onmouseleave="unhover(3)"> <a>deals</a></td>
         <td class="textstyle" id="contactbt" onclick="choose_section(4)" onmouseleave="unhover(4)"> <a>contact</a></td>
 
 
@@ -302,7 +364,7 @@
         </tr>
     </table>
     </form>
-    <div style=" position:absolute; width: 100% ;overflow-y: auto; height: 90%; top:7%">
+    <div style=" position:absolute; width: 100% ;overflow-y: auto; height: 90%; top:7%; sc">
     <?php
     error_reporting(E_ERROR | E_PARSE);
     class dish{
@@ -310,21 +372,24 @@
         public $type;
         public $price;
         public $image;
-        function __construct($name, $type, $price, $image){
+        public $description;
+        function __construct($name, $type, $price, $image, $description){
             $this->name= $name;
             $this->type= $type ;
             $this->price =  $price;
             $this->image =  $image ;
+            $this->description = $description;
         }
 
 
     }
-    $pizza = new dish('pizza','main',20.0,'images/dishpizza.png');
-    $burger = new dish('burger','main',30.0,'images/dishburger.png');
-    $salad = new dish('salad','side',20.0,'images/dishsalad.png') ;
-    $cola = new dish('cola','drink',2.0,'images/cola.png') ;
+    $pizza = new dish('pizza','main',20.0,'images/dishpizza.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
+    $burger = new dish('burger','main',30.0,'images/dishburger.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
+    $salad = new dish('salad','side',20.0,'images/dishsalad.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
+    $cola = new dish('cola','drink',2.0,'images/cola.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
+    $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
 
-    $dishes = array( $pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
+    $dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
 
 
     $font ='Libre Baskerville';
@@ -348,18 +413,19 @@
 
         $id1=$num.'price';
         $id2=$num.'amount';
+        $id3=$num.'disharea';
         if(empty($chosensearch)){
         if($x->type==$chosentype || $chosentype=='all') {
             if ((($num % 4) == 0) && (!$num == 0)) {
                 echo "<tr> ";
             }
             echo "<td  style='; position: relative '> 
-            <div style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
+            <div   style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
 
-            <img src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
-$num
+            <img  src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
+
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
-            <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing</p>
+            <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
           <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->price  </b>$</button>
           <input type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
        
@@ -379,13 +445,13 @@ $num
                     echo "<tr> ";
                 }
                 echo "<td  style='; position: relative '> 
-            <div style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
+            <div  style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
 
-            <img src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
+            <img   src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
 
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
             <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing</p>
-          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->price  </b>$</button>
+          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->description </b>$</button>
           <input type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
        
             </div>
@@ -444,16 +510,44 @@ $num
     ?>
     </div>
 
-
-
-
-
-
 </section>
 
 <section style="display: none" id="sales">
 
-    test2
+    <p style="text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 1.2%;"> limited time deals: </p>
+
+    <div  id='dishscroll' onmouseover="breakfun=true;" onmouseleave="breakfun=false;" style="scroll-behavior: smooth;position: absolute; top: 5%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%;">
+
+
+        <span class='salesspan' style=" left: 2.5%">
+        <img src="images/burgersale.png" style="max-height: 100%; max-width: 70%">
+            <div class="salesdesc">
+                <br> <br> <b style="color: orange; font-size: 200%"> save 50%</b> <br> <br> <b>4</b> burgers <br> <br> <b>2</b> cola <br> <br> <b>1</b> fries <br> <br> <b>1</b> salad <br>
+              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 82  </b>$</button>
+            </div>
+        </span>
+
+        <span class='salesspan' style=" left: 65%">
+        <img src="images/pizza.png" style="max-height: 100%; max-width: 70%">
+            <div class="salesdesc"  >
+                <br> <br> <b style="color: orange; font-size: 200%"> save 40%</b> <br> <br> <b>1</b> large pizza <br> <br> <b>2</b> cola <br> <br> <b>1</b> fries <br> <br>
+              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 38.5  </b>$</button>
+            </div>
+        </span>
+
+        <span class='salesspan' style=" left: 127.5%">
+        <img src="images/kindpng_3844221.png" style="max-height: 100%; max-width: 70%">
+            <div class="salesdesc"  >
+                <br> <br> <b style="color: orange; font-size: 200%"> save 30%</b> <br> <br> <b>3</b> chicken meals <br> <br> <b>2</b> cola <br> <br> <b>2</b> fries <br> <br> <b>1</b> salad <br>
+              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 108  </b>$</button>
+            </div>
+        </span>
+        <div style="position: absolute; left: 187.5%; width: 2.5%; height: 100%"> </div>
+    </div>
+    <p style="text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 41.2%;"> deals: </p>
+
+
+
 </section>
 
 <section style="display: none; height: 40%" id="contact">
