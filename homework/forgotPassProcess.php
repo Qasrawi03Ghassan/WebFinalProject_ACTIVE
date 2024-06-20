@@ -30,14 +30,15 @@
             $headers .= "From: Najah restaurant - WebFinalProject";
 
             if (mail($to, $subject, $message, $headers)) {
-                echo "email was sent successfully!\n";
+                echo "email was sent successfully!<br>";
             } else {
-                echo "email sending failed!\n";
+                echo "email sending failed!<br>";
             }
         //}
     //}
     //if(isset($_POST['userNewPass'])) {
         //Change password in database here
+
         $newPass = $_POST['newPass'];
         //echo $_POST['userNewPass']; just for checking
         $qry = "UPDATE `users` SET `Password` = SHA1('$newPass') WHERE `users`.`Email` = '$userEmail'";
