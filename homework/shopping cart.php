@@ -147,7 +147,8 @@
         $cola = new dish('cola','drink',2.0,'images/cola.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
         $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
 
-        $dishes = array( $chicken,$pizza, $salad, $burger);
+
+        $dishes = array( $chicken,$pizza, $salad, $burger, $cola);
 
 
 
