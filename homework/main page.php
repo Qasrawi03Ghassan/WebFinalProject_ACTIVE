@@ -216,7 +216,10 @@ session_start();
 
     <script >
 
-        function stopAnimation(element) {
+
+
+
+            function stopAnimation(element) {
             $(element).css("-webkit-animation", "none");
             $(element).css("-moz-animation", "none");
             $(element).css("-ms-animation", "none");
@@ -380,10 +383,14 @@ session_start();
             document.cookie= dishname +'='+amount;
             let str= amount + ' orders of '+dishname+' added to cart';
             alert(str);
-
-
-
         }
+            function buttonhover(id){
+                document.getElementById(id).style.backgroundColor='#fbb114';
+            }
+
+            function buttonunhover(id){
+                document.getElementById(id).style.backgroundColor='orange';
+            }
 
 
     </script>
@@ -391,7 +398,7 @@ session_start();
 
 </head>
 
-<body onscroll="show_return()">
+<body onscroll="show_return()" onbeforeunload="close()">
 
 <div id="start_of_page" style="position: absolute; top:0%"></div>
 
@@ -486,12 +493,15 @@ session_start();
     $cola = new dish('cola','drink',2.0,'images/cola.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
     $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
 
+
     $dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
 
 
     $font ='Libre Baskerville';
     $id1 ='id';
     $id2='id';
+    $color ='"'.'#fbb114'.'"';
+    $color2='"'.'orange'.'"';
 
 
     echo "<table id='dishtable' style=';position: absolute; width: 90%; left: 5%; top: 0%; align-content: flex-start; height: 3000px; background-color: #1b1c24; scroll-behavior: smooth;'>";
@@ -513,6 +523,7 @@ session_start();
         $id3=$num.'disharea';
         $name= '"'.$x->name.'"';
 
+
         if(empty($chosensearch)){
         if($x->type==$chosentype || $chosentype=='all') {
             if ((($num % 4) == 0) && (!$num == 0)) {
@@ -529,7 +540,7 @@ session_start();
 
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
             <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
-          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
+          <button  title='add to cart' name=$x->price id= $id1 onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
           <input  name=$name type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
        
             </div>
@@ -549,15 +560,20 @@ session_start();
                 if ((($num % 4) == 0) && (!$num == 0)) {
                     echo "<tr> ";
                 }
-                echo "<td  style='; position: relative '> 
-            <div  style='background-color: #23252e;color: white ;border-radius: 10px;  width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
 
-            <img   src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
+
+
+
+                echo "<td  style='; position: relative '> 
+            <div   style='background-color: #23252e;color: white ;border-radius: 10px;  width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
+
+            <img  src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
 
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
             <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
-          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->price </b>$</button>
-          <input type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
+          <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
+          <input  name=$name type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
+          
        
             </div>
          </td>";
