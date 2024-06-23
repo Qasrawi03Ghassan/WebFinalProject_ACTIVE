@@ -16,20 +16,25 @@ if($conn){
     echo "connection to database is successful.<br>";
 }
 
-$name = $_POST['name'];
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
-$cardNum = $_POST['cardNum'];
-$expDate = $_POST['exp_date'];
-$cvv = $_POST['cvv'];
+if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['cardNum']) && isset($_POST['exp_date']) && isset($_POST['cvv'])){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $cardNum = $_POST['cardNum'];
+    $expDate = $_POST['exp_date'];
+    $cvv = $_POST['cvv'];
 
-/*$qry = "INSERT INTO `users` (`Serial`, `Name`, `Email`, `Username`, `Password`, `Credit card number`, `Credit card expiration date`, `CVV`, `isAdmin`) VALUES (NULL, '$name', '$email', '$username', SHA1('$password'), '$cardNum', LAST_DAY('2027-09-09'), '$cvv', '0')";
+    list($m,$y) = explode("/",$expDate);
+    $d = '01';
+    $cy = date('Y');
+    $cc = substr($cy,0,2);
+    $date = $cc.$y."-".$m."-".$d;
 
-$result = mysqli_query($conn, $qry);*/
-
-
-
-
+    $qry = "INSERT INTO `users` (`Serial`, `Name`, `Email`, `Username`, `Password`, `Credit card number`, `Credit card expiration date`, `CVV`, `isAdmin`) VALUES (NULL, '$name', '$email', '$username', SHA1('$password'), '$cardNum', LAST_DAY('$date'), '$cvv', '0')";
+    $result = mysqli_query($conn, $qry);
+}
 
 mysqli_close($conn);
+header("Location: index.html");
+exit();
