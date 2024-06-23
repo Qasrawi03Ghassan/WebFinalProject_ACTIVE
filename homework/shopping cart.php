@@ -116,6 +116,7 @@
 
 
 
+        $dishesfound=false;
         $id1 ='id';
         $id2='id';
         $num=0;
@@ -131,6 +132,9 @@
             foreach ($dishes as $x) {
 
                 if (isset($_COOKIE[$x->name])) {
+
+                    $dishesfound=true;
+
                     $name= $x->name;
 
                     $amount=$_COOKIE[$name];
@@ -160,6 +164,10 @@
 
                     echo "<script> dishcounter++;</script>";
                 }
+            }
+            if(!$dishesfound)
+            {
+                echo" <div style='font-size: 150%; position:absolute; top:5%; left: 5%; color: white' >no dishes ordered.</div>";
             }
         }
 
