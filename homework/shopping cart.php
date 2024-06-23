@@ -193,7 +193,7 @@
             
               <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;'  id=$id1 title='price' name=$x->price style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:30px; left:70%; width: 120px; height: 40px; color: white; font-size: 120%;'><b> $x->price  </b>$</button>
               <input id=$id2 oninput='alt_price($num)' type='number' step='1'  min='1' placeholder= $amount style='position: absolute; width: 30px; height: 33px;Top:30px; left:87%;border-radius: 5px; text-align: center' >
-              <button id=$id1 title='price' name=$x->price style=' border-radius: 100%; text-align: center;position: absolute; top:30px; left:94%; width: 40px; background-color: #1b1c24;height: 40px; color: orange; font-size: 120%;' onclick='deletedish($name2);'><b> X </b></button>
+              <button id=$id1 title='cancel order' name=$x->price style=' border-radius: 100%; text-align: center;position: absolute; top:30px; left:94%; width: 40px; background-color: #1b1c24;height: 40px; color: orange; font-size: 120%;' onclick='deletedish($name2);'><b> X </b></button>
             </div>
             <button id=$id11 name='3' style='visibility: hidden'> </button>
             <script> alt_price($num);</script>
