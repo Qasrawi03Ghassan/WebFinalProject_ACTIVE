@@ -234,11 +234,16 @@
             $("#emailForm").submit(function (event) {
                 event.preventDefault();
                 var email = document.getElementById("UserEmail").value;
-
+                var sendFlag = 0;
                 //console.log(genCode); // Used for checking only
 
-                $.post("forgotPassProcess.php",{email:email,genCode:genCode},function (data) {
-                    console.log(data); // Not important, just to check if email is sent successfully or not.
+                $.post("forgotPassProcess.php",{email:email,genCode:genCode,sendFlag:sendFlag},function (data) {
+                   console.log("sendFlag: " + data); // Not important, just to check if email is sent successfully or not.
+                    if(data == 0){
+                        alert("Email doesn't exist!");
+                    }else{
+                        sendCode(document.getElementById("UserEmail").value);
+                    }
                 })
             })
         })
@@ -286,7 +291,7 @@
     <div id="formContainer">
         <form method="post" id="emailForm">
             <span id="emailTxt">Email:&nbsp</span><input type="text" id="UserEmail" name="email" placeholder="enter your email here..." maxlength="30" title="Enter your email." required>
-            <input type="submit" id="emailSubmit" name="submit" value="Send code" onclick='sendCode(document.getElementById("UserEmail").value)'>
+            <input type="submit" id="emailSubmit" name="submit" value="Send code">
         </form>
         <form method="post" id="codeForm">
             <div id="afterCode" class="showSlower hidden">

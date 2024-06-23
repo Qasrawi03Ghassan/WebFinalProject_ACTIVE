@@ -10,18 +10,35 @@
     try {
         $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name);
     }catch(mysqli_sql_exception){
-        echo "Connection failed\n";
+        //echo "Connection failed\n";
     }
 
     if($conn){
-        echo "connection to database is successful.\n";
+        //echo "connection to database is successful.\n";
     }
 
     if(isset($_POST['email'])) {
         if (isset($_POST['genCode'])) {
             $userEmail = $_POST['email'];
-
-            //$qry = "SELECT";
+            $qry = "SELECT Email FROM `users`";
+            $result = mysqli_query($conn, $qry);
+            foreach ($result as $row) {
+                if ($row['Email'] == $userEmail) {
+                    $_POST['sendFlag'] = 1;
+                }else{
+                    $_POST['sendFlag'] = 0;
+                    //exit();
+                }
+            }
+            //echo $_POST['sendFlag'];
+            //echo "\n";
+            //echo $_POST['sendFlag']."\n";
+            /*
+            if($send){
+                echo "email exists in the database!\n";
+            }else{
+                echo "email doesn't exist in the database!\n";
+            }*/
 
             $to = $userEmail;
             $subject = "New password recovery code request - Najah restaurant";
@@ -30,10 +47,10 @@
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             $headers .= "From: Najah restaurant - WebFinalProject";
 
-            if (mail($to, $subject, $message, $headers)) {
-                echo "email was sent successfully!\n";
+            if (mail($to, $subject, $message, $headers) && ($_POST['sendFlag'] == 1)) {
+                //echo "email was sent successfully!\n";
             } else {
-                echo "email sending failed!\n";
+                //echo "email sending failed!\n";
             }
         }
     }
