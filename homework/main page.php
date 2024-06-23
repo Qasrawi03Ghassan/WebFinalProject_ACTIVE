@@ -1,6 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Najah restaurant</title>
     <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
@@ -74,6 +78,28 @@
             position: absolute; font-size: 150%; text-align: center; background-color: #23252e; color: white;  left:66%; border-radius: 25px; top: 2%; height: 96%; width: 30%
         }
 
+        #animation1{
+            animation-name: transition1; visibility: hidden;
+        }
+        #animation2{
+            animation-name: transition2; visibility: hidden;
+        }
+        #animation3{
+            animation-name: transition3; visibility: hidden;
+        }
+
+        #burger1{
+            max-height: 120%; left:4%; position: absolute;
+        }
+
+        #pizza1{
+            max-height: 120%; left:4%; position: absolute;
+        }
+
+        #welcometext{
+            text-align: center; font-size: 200%; color: white; font-family: 'Libre Baskerville'; position: absolute; width: 100%; top: 1.5%;
+        }
+
 
 
         @keyframes transition1{
@@ -112,6 +138,52 @@
         }
 
 
+        @media(max-aspect-ratio: 16/9){
+            .section1image{
+                animation-name: null;
+            }
+            section{
+                width: 95%;
+                left: 5%;
+
+                height: 90%;
+            }
+
+            #animation1{
+                animation-name: unset;
+                visibility: visible;
+                top: 55%;
+                width: 80%;
+                left: 10%;
+            }
+            #animation2{
+                animation-name: unset;
+                visibility: visible;
+                top: 15%;
+                width: 80%;
+                left: 10%;
+            }
+            #animation3{
+                animation-name: unset;
+            }
+            #qr{
+                display: none;
+            }
+            #burger1{
+                max-height: 200%; width: 90%; position: absolute;
+            }
+            #pizza1{
+                max-height: 200%; width: 90%; position: absolute;
+            }
+
+            #welcometext{
+                font-size: 100%;
+
+            }
+
+        }
+
+
 
 
 
@@ -142,7 +214,7 @@
         }
     </style>
 
-    <script>
+    <script >
 
         function stopAnimation(element) {
             $(element).css("-webkit-animation", "none");
@@ -296,6 +368,23 @@
             window. open ("shopping%20cart.php", "1");
         }
 
+        function sendtocart( dishname, num)
+        {
+
+            let amount= document.getElementById(num+'amount').value;
+            if(amount==0)
+            {
+                amount=1;
+            }
+
+            document.cookie= dishname +'='+amount;
+            let str= amount + ' orders of '+dishname+' added to cart';
+            alert(str);
+
+
+
+        }
+
 
     </script>
 
@@ -328,21 +417,21 @@
 
 <section id ="home">
 
-    <h1 style="text-align: center; font-size: 200%; color: white; font-family: 'Libre Baskerville'; position: absolute; width: 100%; top: 1.5%;"> welcome to Najah restaurant! <br> check out our <a onclick="choose_section(3)">special deals</a> and order from home</h1>
+    <h1 id="welcometext"> welcome to Najah restaurant! <br> check out our <a onclick="choose_section(3)">special deals</a> and order from home</h1>
 
-    <div class="section1image" style=" animation-name: transition1; visibility: hidden; ">
+    <div id ="animation1" class="section1image" >
 
-     <img src="images/burgersale.png" style="  max-height: 120%; left:4%; position: absolute;">
+     <img src="images/burgersale.png" id="burger1" >
     </div>
-    <div class="section1image" style=";animation-name: transition2; visibility: hidden">
-        <img src="images/kindpng_3844221.png" style="  max-height: 120%; left:10%;  position: absolute;">
+    <div id ="animation2" class="section1image" >
+        <img src="images/kindpng_3844221.png" id="pizza1">
 
     </div>
-    <div class="section1image" style="; animation-name:transition3; visibility: hidden">
-        <img src="images/pizza.png" style="  max-height: 120%; left:3%; position: absolute;">
+    <div id ="animation3" class="section1image" >
+        <img src="images/pizza.png" style="  max-height: 120%; left:10%;  position: absolute;">
     </div>
 
-    <div style="position: absolute; left: 20%; top: 62%; height: 40%; width:60%; text-align: center">
+    <div id="qr" style="position: absolute; left: 20%; top: 62%; height: 40%; width:60%; text-align: center">
     <img src="images/qrcode.png" style=" max-height: 120%">
         <h1 style="; left: 65%;  top:10%; font-size:200%; color: white;font-family: 'Libre Baskerville'; "> Visit our <br> mobile site!</h1>
 
@@ -369,8 +458,11 @@
         </tr>
     </table>
     </form>
+
     <div style=" position:absolute; width: 100% ;overflow-y: auto; height: 90%; top:7%; sc">
     <?php
+
+
     error_reporting(E_ERROR | E_PARSE);
     class dish{
         public $name;
@@ -419,23 +511,31 @@
         $id1=$num.'price';
         $id2=$num.'amount';
         $id3=$num.'disharea';
+        $name= '"'.$x->name.'"';
+
         if(empty($chosensearch)){
         if($x->type==$chosentype || $chosentype=='all') {
             if ((($num % 4) == 0) && (!$num == 0)) {
                 echo "<tr> ";
             }
+
+
+
+
             echo "<td  style='; position: relative '> 
-            <div   style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
+            <div   style='background-color: #23252e;color: white ;border-radius: 10px;  width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
 
             <img  src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
 
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
             <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
-          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->price  </b>$</button>
-          <input type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
+          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
+          <input  name=$name type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
        
             </div>
          </td>";
+
+
 
             if ((($num + 1 % 4) == 0) && (!$num == 0)) {
                 echo "</tr>";
@@ -450,17 +550,19 @@
                     echo "<tr> ";
                 }
                 echo "<td  style='; position: relative '> 
-            <div  style='background-color: #23252e;color: white ;border-radius: 10px; ; width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
+            <div  style='background-color: #23252e;color: white ;border-radius: 10px;  width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
 
             <img   src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
 
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
-            <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing</p>
-          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->description </b>$</button>
+            <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
+          <button title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;'><b> $x->price </b>$</button>
           <input type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
        
             </div>
          </td>";
+
+
 
                 if ((($num + 1 % 4) == 0) && (!$num == 0)) {
                     echo "</tr>";
@@ -514,6 +616,7 @@
     }
     ?>
     </div>
+
 
 </section>
 
@@ -639,6 +742,8 @@ if(!empty($check)|| !empty($check2))
 }
 
 ?>
+
+
 
 </body>
 </html>
