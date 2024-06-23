@@ -212,6 +212,9 @@ session_start();
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+        .cartBtns:hover{
+            cursor: pointer;
+        }
     </style>
 
     <script >
@@ -540,7 +543,7 @@ session_start();
 
            <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
             <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
-          <button  title='add to cart' name=$x->price id= $id1 onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
+          <button  title='add to cart' class='cartBtns' name=$x->price id= $id1 onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
           <input  name=$name type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
        
             </div>
