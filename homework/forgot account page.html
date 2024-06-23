@@ -248,7 +248,7 @@
                 event.preventDefault();
                 var code = document.getElementById("UserCode").value;
               $.post("forgotPassProcess.php",{code:code},function (data){
-                 // console.log(data); Not important, just to check if code is sent successfully or not.
+                  //console.log(data); //No need for it.
               });
             })
         })
@@ -267,8 +267,9 @@
                 evt.preventDefault();
                 if(document.getElementById("newPass").value == document.getElementById("confirmPass").value){
                     var userNewPass = document.getElementById("newPass").value;
+                    var userEmail = document.getElementById("UserEmail").value;
 
-                    $.post("forgotPassProcess.php",{userNewPass:userNewPass},function (data){
+                    $.post("forgotPassProcess.php",{userNewPass:userNewPass,userEmail:userEmail},function (data){
                         console.log(data);
                     });
                 }

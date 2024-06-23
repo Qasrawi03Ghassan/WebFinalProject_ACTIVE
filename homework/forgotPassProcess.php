@@ -1,6 +1,5 @@
 <?php
 //The comments below are required, don't change them
-
     //Connection to db:
     $db_server = "localhost";
     $db_username = "root";
@@ -11,16 +10,18 @@
     try {
         $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name);
     }catch(mysqli_sql_exception){
-        echo "Connection failed.<br>";
+        echo "Connection failed\n";
     }
 
     if($conn){
-        echo "connection to database is successful.<br>";
+        echo "connection to database is successful.\n";
     }
 
-    //if(isset($_POST['genCode'])) {
-        //if (isset($_POST['email'])) {
+    if(isset($_POST['email'])) {
+        if (isset($_POST['genCode'])) {
             $userEmail = $_POST['email'];
+
+            //$qry = "SELECT";
 
             $to = $userEmail;
             $subject = "New password recovery code request - Najah restaurant";
@@ -30,20 +31,23 @@
             $headers .= "From: Najah restaurant - WebFinalProject";
 
             if (mail($to, $subject, $message, $headers)) {
-                echo "email was sent successfully!<br>";
+                echo "email was sent successfully!\n";
             } else {
-                echo "email sending failed!<br>";
+                echo "email sending failed!\n";
             }
-        //}
-    //}
-    //if(isset($_POST['userNewPass'])) {
+        }
+    }
+    if(isset($_POST['userNewPass']) && isset($_POST['userEmail'])) {
         //Change password in database here
 
-        $newPass = $_POST['newPass'];
-        //echo $_POST['userNewPass']; just for checking
-        $qry = "UPDATE `users` SET `Password` = SHA1('$newPass') WHERE `users`.`Email` = '$userEmail'";
+        $userEmail = $_POST['userEmail'];
+        $userNewPass = $_POST['userNewPass'];
+        //echo $_POST['userNewPass']."\n"; //just for checking
+
+        $qry = "UPDATE `users` SET `Password` = SHA1('$userNewPass') WHERE `users`.`Email` = '$userEmail'";
+
 
         $result = mysqli_query($conn, $qry);
 
-    //}
+    }
     mysqli_close($conn);
