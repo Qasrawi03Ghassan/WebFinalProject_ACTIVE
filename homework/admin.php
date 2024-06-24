@@ -1,4 +1,16 @@
 <?php
+    //Connecting to db:
+    $db_server = "localhost";
+    $db_name = "webfinalproject_db";
+    $db_username = "root";
+    $db_password = "";
+
+    $conn = "";
+    try{
+        $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name);
+    }catch(Exception $e){
+        echo"<script>alert('Connection to database failed!');</script>";
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -116,11 +128,11 @@
     <div id="dishesCont" align="center">
         <h1 style="color: white;font-family: 'Libre Baskerville', serif;font-size: 20px">Available dishes</h1>
         <input type="search" placeholder="search a dish here..." class="searchBox">
-        <table width="100%">
+        <table width="80%">
             <tr>
-                <td class="head">Name</td>
-                <td class="head" style="text-align: right">Type</td>
-                <td class="head" style="text-align: right;width: 200px">Price&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                <td class="head" style="text-align: left">Name</td>
+                <td class="head" style="text-align: center;width: 200px">Type</td>
+                <td class="head" style="text-align: center;width: 200px">Price&nbsp&nbsp&nbsp&nbsp&nbsp</td>
                 <td class="head" style="text-align: left">Image url</td>
             </tr>
         </table>
@@ -141,36 +153,97 @@
                     $this->image = $image;
                 }
             }
-            $pizza = new dish('pizza','main',20.0,'images/dishpizza.png');
+
+            $dishName = "";
+            $dishType = "";
+            $dishPrice = "";
+            $dishImg = "";
+
+            $databaseDishes = array();
+
+            //Retrieving data from database:
+            $qry="SELECT * from dishes";
+            $result=mysqli_query($conn,$qry);
+            foreach($result as $row){
+                $dishName = $row['Name'];
+                $dishType = $row['Type'];
+                $dishPrice = $row['Price'];
+                $dishImg = $row['Image url'];
+
+                $databaseDishes[] = new dish($dishName, $dishType, $dishPrice, $dishImg);
+            }
+
+            /*$pizza = new dish('pizza','main',20.0,'images/dishpizza.png');
             $burger = new dish('burger','main',30.0,'images/dishburger.png');
             $salad = new dish('salad','side',20.0,'images/dishsalad.png') ;
             $cola = new dish('cola','drink',2.0,'images/cola.png') ;
             $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
-
+            */
             $font ='Libre Baskerville';
 
-            $dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
+            //$dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
             echo "<table align='center' width='100%'>";
             $i=0;
-            foreach ($dishes as $x){
+            foreach ($databaseDishes as $x){
                 $i++;
                 echo "<tr>";
+                echo "<form action='admin.php' method='post'>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px;width: 15px'>".$i.") "."</td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->name'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->type'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='number' step='1' min='0'' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$x->price'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->image'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;text-align: center;background-color: orange;color: white' class='sBtn'>Submit</button</td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input required  name='dishName' type='text' style='border-radius: 10px;font-family: $font;text-align: center' value='$x->name'></td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input required  name='dishType' type='text' style='border-radius: 10px;font-family: $font;text-align: center' value='$x->type'></td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input required  name='dishPrice' type='number' step='1' min='0'' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' value='$x->price'></td>";
+                echo "<input name='dishIndex' type='hidden' value='$i'>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input  name='dishURL' type='text' style='border-radius: 10px;width: 250px;font-family: $font;text-align: center' value='$x->image'></td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='submit' style='border-radius: 10px;font-family: $font;text-align: center;background-color: orange;color: white' class='sBtn'>Submit</button</td>";
+                echo "</form>";
                 echo "</tr>";
             }
             echo "<tr>";
             echo "<td style='font-family: $font;color: white;font-size: 15px;width: 15px'>New dish</td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center;tex' placeholder='enter dish name here'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='enter dish type here'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='number' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='enter dish image url here'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;background-color: orange;color: white' class='sBtn'>Add dish</button</td>";
+            echo "<form action='admin.php' method='post'>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input required name='dName' type='text' style='border-radius: 10px;font-family: $font;text-align: center;tex' placeholder='enter dish name here'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input required name='dType' type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='enter dish type here'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input required name='dPrice' type='number' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input name='dURL' type='text' style='border-radius: 10px;font-family: $font;text-align: center;width: 250px' placeholder='enter dish image url here'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='submit' style='border-radius: 10px;font-family: $font;background-color: orange;color: white' class='sBtn'>Add dish</button</td>";
+            echo "</form>";
             echo "</table>";
+
+            //Editing an existing dish:
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                if(isset($_POST['dishName']) && isset($_POST['dishType']) && isset($_POST['dishPrice']) && isset($_POST['dishURL']) && isset($_POST['dishIndex'])){
+                    $Index = $_POST['dishIndex'];
+                    $Name = $_POST['dishName'];
+                    $Price = $_POST['dishPrice'];
+                    $Type = $_POST['dishType'];
+                    $URL = $_POST['dishURL'];
+
+                    $qry = "UPDATE `dishes` SET `Name` = '$Name', `Type` = '$Type', `Image url` = '$URL', `Price` = '$Price' WHERE `dishes`.`Serial` = '$Index'";
+                    $result = mysqli_query($conn,$qry);
+                    echo "<meta http-equiv='refresh' content='0'>";
+                    if($result){
+                        echo "<script>alert('$Name'+' '+'dish was changed successfully!')</script>";
+                    }
+                }
+            }
+
+            //Adding a new dish:
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                if(isset($_POST['dName']) && isset($_POST['dType']) && isset($_POST['dPrice']) && isset($_POST['dURL'])){
+                    $dishName = $_POST['dName'];
+                    $dishPrice = $_POST['dPrice'];
+                    $dishType = $_POST['dType'];
+                    $dishURL = $_POST['dURL'];
+
+                    $qry = "INSERT INTO `dishes` (`Serial`, `Name`, `Type`, `Image url`, `Price`) VALUES (NULL, '$dishName', '$dishType', '$dishURL', '$dishPrice')";
+                    $result = mysqli_query($conn,$qry);
+                    echo "<meta http-equiv='refresh' content='0'>";
+                    if($result){
+                        echo "<script>alert('$dishName'+' '+'dish was added successfully!')</script>";
+                    }
+                }
+            }
+
             ?>
         </div>
     </div>
@@ -198,39 +271,63 @@
                     $this->email = $email;
                 }
             }
+            $databaseUsers = array();
+            //Getting users from the database:
+            $qry = "SELECT * from users WHERE isAdmin != 1";
+            $result=mysqli_query($conn,$qry);
+            foreach($result as $row){
+                $databaseUsers[] = new user($row['Name'], $row['Username'], $row['Email']);
+            }
+            /*
             $Ahmad = new user('Ahmad Mansour','Ahm@d99','Ahmad99@gmail.com');
             $Omar = new user('Omar Dirballi','Omar_03',"Omar03_24@gmail.com");
             $Dana = new user('Dana Hashem','D@n@GG',"Dana123@gmail.com") ;
             $Toqa = new user('Toqa Suhail','TQ@123',"ToqaHashem@yahoo.com") ;
             $Mohammad = new user('Mohammad Aghbar','Mohammad123',"Moh99@hotmail.com") ;
-
+            */
             $font ='Libre Baskerville';
 
-            $users = array( $Ahmad,$Omar, $Dana,$Toqa, $Mohammad);
+            //$users = array( $Ahmad,$Omar, $Dana,$Toqa, $Mohammad);
             echo "<table align='center' width='100%'>";
             $i=0;
-            foreach ($users as $x){
+            foreach ($databaseUsers as $x){
                 $i++;
                 echo "<tr>";
+                echo "<form action='admin.php' method='post'>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px;width: 15px'>".$i.") "."</td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><span style='border-radius: 10px;font-family: $font;text-align: center'>$x->name</span></td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><span style='border-radius: 10px;font-family: $font;text-align: center'>$x->username</span></td>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px'><span style='border-radius: 10px;font-family: $font;text-align: center'>$x->email</span></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;text-align: center;background-color: #a13333;color: white' class='sBtn'>Remove</button</td>";
+                echo "<input type='hidden' name='index' value='$x->username'>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='submit' style='border-radius: 10px;font-family: $font;text-align: center;background-color: #a13333;color: white' class='sBtn'>Remove</button</td>";
+                echo "</form>";
                 echo "</tr>";
             }
             echo "</table>";
+
+
+            //Removing a user:
+            if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['index'])){
+                $ind = $_POST['index'];
+                $qry="DELETE FROM users WHERE username = '$ind'";
+                $result = mysqli_query($conn,$qry);
+                if($result){
+                    echo "<script>alert('The user with username (' + '$ind' +') was deleted from the database successfully.')</script>";
+                }
+                echo "<meta http-equiv='refresh' content='0'>";
+            }
+
             ?>
         </div>
     </div>
     <div id="dealsCont">
         <h1 style="color: white;font-family: 'Libre Baskerville', serif;font-size: 20px">Available deals</h1>
-        <input type="search" placeholder="search a deal here..." class="searchBox">
+        <input type="search" placeholder="search a deal here..." class="searchBox" id="dealSearch">
         <table width="108%">
             <tr>
                 <td class="head">Name</td>
-                <td class="head" style="text-align: right">Type</td>
-                <td class="head" style="text-align: right;width: 200px">Price&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                <td class="head" style="text-align: center;width: 250px">Type</td>
+                <td class="head" style="text-align: center;width: 200px">Price&nbsp&nbsp&nbsp&nbsp&nbsp</td>
                 <td class="head" style="text-align: left">Description</td>
             </tr>
         </table>
@@ -251,34 +348,82 @@
                     $this->dishes = $dishes;
                 }
             }
+            //Getting data from database:
+            $databaseDeals = array();
+            $qry="SELECT * FROM deals";
+            $result=mysqli_query($conn,$qry);
+            foreach($result as $row){
+                $databaseDeals[] = new deal($row['Name'], $row['Type'], $row['Price'], $row['Dishes']);
+            }
+            /*
             $f = new deal('Burger super','limited',82,'4 burgers, 2 cola, 1 fries, 1 salad');
             $s = new deal('Pizza tower','limited',38.5,'1 large pizza, 2 cola, 1 fries');
             $t = new deal('Crispy Party bucket','limited',108,'3 chicken meals, 2 cola, 2 fries, 1 salad') ;
-
+            */
             $font ='Libre Baskerville';
 
-            $deals = array( $f,$s,$t);
+            //$deals = array( $f,$s,$t);
             echo "<table align='center' width='100%'>";
             $i=0;
-            foreach ($deals as $x){
+            foreach ($databaseDeals as $x){
                 $i++;
                 echo "<tr>";
+                echo "<form action='admin.php' method = post>";
                 echo "<td style='font-family: $font;color: white;font-size: 20px;width: 15px'>".$i.") "."</td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->name'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='$x->type'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='number' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$x->price'></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><textarea style='border-radius: 10px;font-family: $font;text-align: center;resize: none;height: 60px' placeholder='$x->dishes'></textarea></td>";
-                echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;text-align: center;background-color: orange;color: white;font-size: 25px' class='sBtn'>Submit</button</td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input name='dealN' type='text' style='border-radius: 10px;font-family: $font;text-align: center' value='$x->name'></td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input name='dealT'  type='text' style='border-radius: 10px;font-family: $font;text-align: center' value='$x->type'></td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><input name='dealP' type='number' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' value='$x->price'></td>";
+                echo "<input type='hidden' value='$i' name='dealIndex'>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><textarea name='dealD'  style='border-radius: 10px;font-family: $font;text-align: center;resize: none;height: 60px'>$x->dishes</textarea></td>";
+                echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='submit' style='border-radius: 10px;font-family: $font;text-align: center;background-color: orange;color: white;font-size: 25px' class='sBtn'>Submit</button</td>";
+                echo "</form>";
                 echo "</tr>";
             }
             echo "<tr>";
+            echo "<form action='admin.php' method = post>";
             echo "<td style='font-family: $font;color: white;font-size: 15px;width: 15px'>New deal</td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center;' placeholder='enter deal name here'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='text' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='enter deal type here'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><input type='number' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$'></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><textarea style='border-radius: 10px;font-family: $font;text-align: center;height: 60px;resize: none' placeholder='enter deal description here'></textarea></td>";
-            echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='button' style='border-radius: 10px;font-family: $font;background-color: orange;color: white;font-size: 25px' class='sBtn'>Add deal</button</td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input required type='text' name='dealName' style='border-radius: 10px;font-family: $font;text-align: center;' placeholder='enter deal name here'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input required type='text' name='dealType' style='border-radius: 10px;font-family: $font;text-align: center' placeholder='enter deal type here'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><input required type='number' name='dealPrice' step='1' min='0' style='border-radius: 10px;font-family: $font;width: 50px;text-align: center' placeholder='$'></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><textarea name='dealDesc' style='border-radius: 10px;font-family: $font;text-align: center;height: 60px;resize: none' placeholder='enter deal description here'></textarea></td>";
+            echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='submit' style='border-radius: 10px;font-family: $font;background-color: orange;color: white;font-size: 25px' class='sBtn'>Add deal</button</td>";
+            echo "</form>";
             echo "</table>";
+
+            //Editing an existing deal:
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                if(isset($_POST['dealN']) && isset($_POST['dealT']) && isset($_POST['dealP']) && isset($_POST['dealD']) && isset($_POST['dealIndex'])){
+                    $dIndex = $_POST['dealIndex'];
+                    $dName = $_POST['dealN'];
+                    $dPrice = $_POST['dealP'];
+                    $dType = $_POST['dealT'];
+                    $dDesc = $_POST['dealD'];
+
+                    $qry = "UPDATE `deals` SET `Name` = '$dName', `Price` = '$dPrice', `Dishes` = '$dDesc', `Type` = '$dType' WHERE `deals`.`Serial` = '$dIndex'";
+                    $result = mysqli_query($conn,$qry);
+                    echo "<meta http-equiv='refresh' content='0'>";
+                    if($result){
+                        echo "<script>alert('$dName'+' '+'deal was changed successfully!')</script>";
+                    }
+                }
+            }
+
+            //Adding a new deal
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                if(isset($_POST['dealName']) && isset($_POST['dealType']) && isset($_POST['dealPrice']) && isset($_POST['dealDesc'])){
+                    $dealName = $_POST['dealName'];
+                    $dealPrice = $_POST['dealPrice'];
+                    $dealType = $_POST['dealType'];
+                    $dealDesc = $_POST['dealDesc'];
+
+                    $qry = "INSERT INTO `deals` (`Serial`, `Name`, `Price`, `Dishes`, `Type`) VALUES (NULL, '$dealName', '$dealPrice', '$dealDesc', '$dealType')";
+                    $result = mysqli_query($conn,$qry);
+                    echo "<meta http-equiv='refresh' content='0'>";
+                    if($result){
+                        echo "<script>alert('$dealName'+' '+'deal was added successfully!')</script>";
+                    }
+                }
+            }
             ?>
         </div>
     </div>
@@ -289,10 +434,21 @@
 
 
 
+
+
         window.close();
         window.open("index.html");
     }
 
+    /*document.getElementById("dealSearch").addEventListener('keyup',function () {
+        for(var i=0;i<document.getElementsByName("dealN").length;i++){
+            if(document.getElementsByName("dealN").item(i).value.includes(document.getElementById("dealSearch").value)){
+                document.getElementsByName("dealN").item(i).style.visibility="hidden";
+            }else{
+                document.getElementsByName("dealN").item(i).style.visibility="visible";
+            }
+        }
+    });*/
 
     document.getElementById("dishes").addEventListener('click',function () {
         document.getElementById("dishes").style.color="orange";
@@ -344,3 +500,6 @@
 </script>
 </body>
 </html>
+<?php
+    mysqli_close($conn);
+?>
