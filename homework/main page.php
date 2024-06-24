@@ -395,6 +395,17 @@ session_start();
                 document.getElementById(id).style.backgroundColor='orange';
             }
 
+            function senddealtocart( dealname)
+            {
+
+
+
+
+                document.cookie= dealname +'='+'1';
+                let str= '1' + ' orders of '+dealname+' added to cart';
+                alert(str);
+            }
+
 
     </script>
 
@@ -559,7 +570,7 @@ session_start();
             }
         }
         else{
-            if($x->name==$chosensearch) {
+            if(str_contains ( $x->name,$chosensearch)) {
                 if ((($num % 4) == 0) && (!$num == 0)) {
                     echo "<tr> ";
                 }
@@ -646,29 +657,97 @@ session_start();
     <div  id='dishscroll' onmouseover="breakfun=true;" onmouseleave="breakfun=false;" style="scroll-behavior: smooth;position: absolute; top: 5%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%;">
 
 
-        <span class='salesspan' style=" left: 2.5%">
-        <img src="images/burgersale.png" style="max-height: 100%; max-width: 70%">
-            <div class="salesdesc">
-                <br> <br> <b style="color: orange; font-size: 200%"> save 50%</b> <br> <br> <b>4</b> burgers <br> <br> <b>2</b> cola <br> <br> <b>1</b> fries <br> <br> <b>1</b> salad <br>
-              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 82  </b>$</button>
-            </div>
-        </span>
+        <?php
+        class deal{
 
-        <span class='salesspan' style=" left: 65%">
-        <img src="images/pizza.png" style="max-height: 100%; max-width: 70%">
-            <div class="salesdesc"  >
-                <br> <br> <b style="color: orange; font-size: 200%"> save 40%</b> <br> <br> <b>1</b> large pizza <br> <br> <b>2</b> cola <br> <br> <b>1</b> fries <br> <br>
-              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 38.5  </b>$</button>
-            </div>
-        </span>
+            public $name;
+            public $type;
+            public $price;
+            public $image;
+            public $description;
+            function __construct($name, $type, $price, $image, $description){
+                $this->name= $name;
+                $this->type= $type ;
+                $this->price =  $price;
+                $this->image =  $image ;
+                $this->description = $description;
+            }
+        }
 
-        <span class='salesspan' style=" left: 127.5%">
-        <img src="images/kindpng_3844221.png" style="max-height: 100%; max-width: 70%">
-            <div class="salesdesc"  >
-                <br> <br> <b style="color: orange; font-size: 200%"> save 30%</b> <br> <br> <b>3</b> chicken meals <br> <br> <b>2</b> cola <br> <br> <b>2</b> fries <br> <br> <b>1</b> salad <br>
-              <button title='add to cart'  id='sales1bt' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;'><b> 108  </b>$</button>
+        $burgersale = new deal('burgersale','limited', 82, 'images/burgersale.png','save 50% 4 burgers 2 cola 1 fries 1 salad');
+        $pizzasale = new deal('pizzasale','limited', 38.5, 'images/pizza.png','save 40% 1 large pizza 2cola 1 fries');
+        $chickensale = new deal('chickensale','limited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken meals 2 cola 2 fries 1 salad');
+
+        $deals= array($burgersale,$pizzasale,$chickensale);
+
+        $count=0;
+        $num=2.5;
+        $btid='';
+
+        foreach ($deals as $x)
+        {
+            $desc= explode(" ",$x->description);
+
+            $btid= $count.'salesbt';
+
+            $name= '"'.$x->name.'"';
+
+            $left=$num.'%';
+            echo "
+            <span class='salesspan' style=' left: $left'>
+            <img src=$x->image style='max-height: 100%; max-width: 70%'>
+            <div class='salesdesc'>
+               ";
+            $strcount=0;
+
+                while ($strcount <count($desc))
+                {
+                    if($strcount==0)
+                    {
+                        echo "<br> <br> <b style='color: orange; font-size: 200%'>";
+
+                    }
+
+                    if(($strcount>1)&& ($strcount%2==0))
+                    {
+                        echo "<b>";
+
+                    }
+
+                    echo $desc[$strcount];
+
+                    if(($strcount>1)&& ($strcount%2==0))
+                    {
+                        echo "</b>";
+                    }
+                    if($strcount==1)
+                    {
+                        echo "</b>";
+                    }
+
+                    if((($strcount+1)%2)==0)
+                    {
+                        echo "<br> <br>";
+                    }
+                    $strcount+=1;
+
+                }
+             echo "
+              <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart'  id=$btid style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;' onclick='senddealtocart($name);'><b> $x->price  </b>$</button>
             </div>
-        </span>
+         </span>";
+            $num+=62.5;
+            $count++;
+
+        }
+
+
+        ?>
+
+
+
+
+
         <div style="position: absolute; left: 187.5%; width: 2.5%; height: 100%"> </div>
     </div>
     <p style="text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 41.2%;"> deals: </p>
