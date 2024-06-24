@@ -397,10 +397,6 @@ session_start();
 
             function senddealtocart( dealname)
             {
-
-
-
-
                 document.cookie= dealname +'='+'1';
                 let str= '1' + ' orders of '+dealname+' added to cart';
                 alert(str);
@@ -751,7 +747,82 @@ session_start();
         <div style="position: absolute; left: 187.5%; width: 2.5%; height: 100%"> </div>
     </div>
     <p style="text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 41.2%;"> deals: </p>
+    <div  id='dealscroll' onmouseover="breakfun=true;" onmouseleave="breakfun=false;" style="scroll-behavior: smooth;position: absolute; top: 45%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%;">
 
+    <?php
+
+
+
+    $burgersale1 = new deal('burgersale1','unlimited', 82, 'images/burgersale.png','save 50% 4 burgers 2 cola 1 fries 1 salad');
+    $pizzasale1 = new deal('pizzasale1','unlimited', 38.5, 'images/pizza.png','save 40% 1 large pizza 2cola 1 fries');
+    $chickensale1 = new deal('chickensale1','unlimited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken meals 2 cola 2 fries 1 salad');
+
+    $deals= array($burgersale1,$pizzasale1,$chickensale1);
+
+    $count=0;
+    $num=2.5;
+    $btid='';
+
+    foreach ($deals as $x)
+    {
+        $desc= explode(" ",$x->description);
+
+        $btid= $count.'salesbt2';
+
+        $name= '"'.$x->name.'"';
+
+        $left=$num.'%';
+        echo "
+            <span class='salesspan' style=' left: $left'>
+            <img src=$x->image style='max-height: 100%; max-width: 70%'>
+            <div class='salesdesc'>
+               ";
+        $strcount=0;
+
+        while ($strcount <count($desc))
+        {
+            if($strcount==0)
+            {
+                echo "<br> <br> <b style='color: orange; font-size: 200%'>";
+
+            }
+
+            if(($strcount>1)&& ($strcount%2==0))
+            {
+                echo "<b>";
+
+            }
+
+            echo $desc[$strcount];
+
+            if(($strcount>1)&& ($strcount%2==0))
+            {
+                echo "</b>";
+            }
+            if($strcount==1)
+            {
+                echo "</b>";
+            }
+
+            if((($strcount+1)%2)==0)
+            {
+                echo "<br> <br>";
+            }
+            $strcount+=1;
+
+        }
+        echo "
+              <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart'  id=$btid style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;' onclick='senddealtocart($name);'><b> $x->price  </b>$</button>
+            </div>
+         </span>";
+        $num+=62.5;
+        $count++;
+
+    }
+
+
+    ?>
+    </div>
 
 
 </section>
