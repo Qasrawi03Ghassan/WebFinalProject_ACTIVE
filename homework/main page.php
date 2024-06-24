@@ -1,5 +1,19 @@
 <?php
 session_start();
+//Connection to db:
+$db_server = "localhost";
+$db_username = "root";
+$db_password = "";
+$db_name = "webfinalproject_db";
+$conn="";
+
+try{
+    $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name);
+}catch(Exception $e){
+    echo"<script>alert('Connection to database failed!');</script>";
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -524,9 +538,27 @@ session_start();
             $this->image =  $image ;
             $this->description = $description;
         }
-
-
     }
+
+    /*//Get dishes from database:
+    $pizza = "";
+    $burger = "";
+    $salad = "";
+    $chicken = "";
+    $falafel = "";
+    $pasta = "";
+    $mushroom_soup = "";
+    $turkey = "";
+    $fries = "";
+    $hotdog = "";
+    $tea = "";
+
+    $qry = "SELECT * FROM dishes";
+    $result = mysqli_query($conn,$qry);*/
+
+
+
+
     $pizza = new dish('pizza','main',20.0,'images/dishpizza.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
     $burger = new dish('burger','main',30.0,'images/dishburger.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
     $salad = new dish('salad','side',20.0,'images/dishsalad.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
@@ -535,7 +567,6 @@ session_start();
 
 
     $dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
-
 
     $font ='Libre Baskerville';
     $id1 ='id';
@@ -873,8 +904,8 @@ session_start();
 
 <IMG SRC="images/profilepic.png" onmouseover="showprofileinfo()" WIDTH="width" HEIGHT="height" ALT="Image Text" id="profileicon" >
 <div  onmouseleave="hideprofileinfo()"  onmouseover="showprofileinfo()" style="visibility: hidden;top :3%; left : 2.7%; position : absolute; background-color: #1b1c24; text-align: center; border-radius: 25px; width: 6%; height: 20%; z-index: -10;" id="profileinfo">
-    <span style="width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%"> user name</span>
-    <a href="index.html" style="width: 100%; top:75%; position: absolute; left: 0%; color: white"> log out</a>
+    <span style="width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%"> <?php echo $_SESSION['userUsername']  ?></span>
+    <a href="index.php" style="width: 100%; top:75%; position: absolute; left: 0%; color: white"> log out</a>
 </div>
 
 <a href ="#start_of_page"><IMG  id="return"   SRC="images/arrow.png" WIDTH="width" HEIGHT="height"  title="return" style="top :85%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b; display: none"> </a>

@@ -150,12 +150,12 @@
 <div id="login" >
 
 <h1 id ="welcome_text" style="font-family: 'Libre Baskerville',serif; font-size: 36px">Welcome to Najah restaurant!</h1>
-    <form action="main%20page.php" method="get">
+    <form action="index.php" method="post">
     <div class="inputname">
-         Username:<span>  </span><input type="text" id ="username" placeholder="enter username here..."><br>
+         Username:<span>  </span><input type="text" id ="username" name="loginUsername" placeholder="enter username here..."><br>
     </div>
     <div class="inputname" style ="top:46%" >
-         Password:<span>  &nbsp</span><input id="password" type ="password"  placeholder="enter password here..." >
+         Password:<span>  &nbsp</span><input id="password" type ="password" name="loginPassword" placeholder="enter password here..." >
         <button type="button" id="showPassBtn"><i class="fa-solid fa-eye"></i></button>
         <button type="button" id="hidePassBtn"><i class="fa-solid fa-eye-slash"></i></button>
     </div>

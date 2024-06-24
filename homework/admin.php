@@ -1,4 +1,5 @@
 <?php
+session_start();
     //Connecting to db:
     $db_server = "localhost";
     $db_name = "webfinalproject_db";
@@ -112,10 +113,10 @@
 <body>
 <div id="logout" align="center">
     <i class="fa-solid fa-user-tie" id="userIcon"></i><br>
-    <span style="color: white;position: fixed;left: 125px;top: 100px;visibility: hidden;opacity: 0;transition: visibility 0.25s ease,opacity 0.25s ease;font-size: 20px" id="logoutBtn" onclick="logout()"><a><i>Logout</i></a></span>
+    <span style="color: white;position: fixed;left: 125px;top: 100px;visibility: hidden;opacity: 0;transition: visibility 0.25s ease,opacity 0.25s ease;font-size: 20px" id="logoutBtn" ><a href="index.php" style="color: white;"><i>Logout</i></a></span>
 </div>
 <div id="mainCont" align="center">
-    <h1 id="title">Welcome back admin</h1>
+    <h1 id="title">Welcome back <?php echo $_SESSION['adminUsername']  ?></h1>
     <div id="nav">
         <table align="center" width="100%" >
             <tr>
@@ -437,7 +438,7 @@
 
 
         window.close();
-        window.open("index.html");
+        window.open("index.php");
     }
 
     /*document.getElementById("dealSearch").addEventListener('keyup',function () {

@@ -36,5 +36,5 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['username']) 
 }
 
 mysqli_close($conn);
-header("Location: index.html");
+header("Location: index.php");
 exit();
