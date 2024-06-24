@@ -599,6 +599,7 @@ session_start();
             document.cookie= dishname +'='+amount;
             let str= amount + ' orders of '+dishname+' added to cart';
             alert(str);
+
         }
             function buttonhover(id){
                 document.getElementById(id).style.backgroundColor='#fbb114';
@@ -1018,7 +1019,7 @@ session_start();
 
                 }
              echo "</span>
-              <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart'  id=$btid style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;' onclick='senddealtocart($name);'><b class='dealbutton'> $x->price  </b> <b class='dealbutton'  style='font-style: unset'>$</b></button>
+              <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart'  id=$btid style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;' onclick='senddealtocart($name)'><b class='dealbutton'> $x->price  </b> <b class='dealbutton'  style='font-style: unset'>$</b></button>
             </div>
          </span>";
             $num+=62.5;
