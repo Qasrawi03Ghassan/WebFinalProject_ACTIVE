@@ -430,6 +430,7 @@ try{
             document.cookie= dishname +'='+amount;
             let str= amount + ' orders of '+dishname+' added to cart';
             alert(str);
+            alert(document.cookie);
         }
             function buttonhover(id){
                 document.getElementById(id).style.backgroundColor='#fbb114';
@@ -540,21 +541,20 @@ try{
         }
     }
 
-    /*//Get dishes from database:
-    $pizza = "";
-    $burger = "";
-    $salad = "";
-    $chicken = "";
-    $falafel = "";
-    $pasta = "";
-    $mushroom_soup = "";
-    $turkey = "";
-    $fries = "";
-    $hotdog = "";
-    $tea = "";
+    //Get dishes from database:
+    $dishes = array();
 
     $qry = "SELECT * FROM dishes";
-    $result = mysqli_query($conn,$qry);*/
+    $result = mysqli_query($conn,$qry);
+    foreach ($result as $row){
+        $name = $row['Name'];
+        $type = $row['Type'];
+        $price= $row['Price'];
+        $URL = $row['Image url'];
+        $desc = $row['Description'];
+
+        $dishes[] = new dish($name,$type,$price,$URL,$desc);
+    }
 
 
 
@@ -566,7 +566,7 @@ try{
     $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
 
 
-    $dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
+    //$dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
 
     $font ='Libre Baskerville';
     $id1 ='id';

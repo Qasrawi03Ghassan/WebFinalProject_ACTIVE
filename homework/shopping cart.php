@@ -1,3 +1,15 @@
+<?php
+    $db_server = "localhost";
+    $db_name = "webfinalproject_db";
+    $db_username = "root";
+    $db_password = "";
+    $conn = "";
+    try{
+        $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name);
+    }catch (Exception $e){
+        echo"<script>alert('Connection to database failed!');</script>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,6 +193,21 @@
              }
         }
 
+        //Get dishes from database:
+        $dishes = array();
+
+        $qry = "SELECT * FROM dishes";
+        $result = mysqli_query($conn,$qry);
+        foreach ($result as $row){
+            $name = $row['Name'];
+            $type = $row['Type'];
+            $price= $row['Price'];
+            $URL = $row['Image url'];
+            $desc = $row['Description'];
+
+            $dishes[] = new dish($name,$type,$price,$URL,$desc);
+        }
+
         $pizza = new dish('pizza','main',20.0,'images/dishpizza.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
         $burger = new dish('burger','main',30.0,'images/dishburger.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
         $salad = new dish('salad','side',20.0,'images/dishsalad.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
@@ -188,7 +215,7 @@
         $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
 
 
-        $dishes = array( $chicken,$pizza, $salad, $burger, $cola);
+        //$dishes = array( $chicken,$pizza, $salad, $burger, $cola);
 
 
 
