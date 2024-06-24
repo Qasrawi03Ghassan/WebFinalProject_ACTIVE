@@ -167,9 +167,7 @@ session_start();
             position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center;
         }
 
-        #mobilecheck1{
-            background-color: yellow;
-        }
+
         #dishscroll{
             scroll-behavior: smooth;position: absolute; top: 5%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%; overflow-y: hidden;
         }
@@ -230,9 +228,7 @@ session_start();
 
         @media(max-aspect-ratio: 16/9){
 
-            #mobilecheck1{
-                background-color: red;
-            }
+
 
             .section1image{
                 animation-name: null;
@@ -938,8 +934,8 @@ session_start();
         }
 
         $burgersale = new deal('burgersale','limited', 82, 'images/burgersale.png','save 50% 4 burgers 2 cola 1 fries 1 salad');
-        $pizzasale = new deal('pizzasale','limited', 38.5, 'images/pizza.png','save 40% 1 large pizza 2cola 1 fries');
-        $chickensale = new deal('chickensale','limited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken meals 2 cola 2 fries 1 salad');
+        $pizzasale = new deal('pizzasale','limited', 38.5, 'images/pizza.png','save 40% 1 large-pizza 2cola 1 fries');
+        $chickensale = new deal('chickensale','limited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken-meals 2 cola 2 fries 1 salad');
 
         $deals= array($burgersale,$pizzasale,$chickensale);
 

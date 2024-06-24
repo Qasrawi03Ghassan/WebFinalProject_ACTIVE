@@ -30,6 +30,47 @@
             width: 74%;
             height:30px
         }
+        #disharea{
+            position: absolute; top: 7.5%; left: 5%; background-color: #23252e; width: 55%; height: 40%; overflow-y: auto; border-radius: 25px
+        }
+        #dealarea{
+            position: absolute; top: 55%; left: 5%; background-color: #23252e; width: 55%; height: 40%; overflow-y: auto; border-radius: 25px
+        }
+        #orderdish{
+            font-size: 180%; position:absolute; top:3%; left: 5%; color: white;
+        }
+        #orderdeals{
+            font-size: 180%; position:absolute; top:50.5%; left: 5%; color: white;
+        }
+        #paymenttab{
+            position: absolute; top: 7.5%; left: 62.5%; background-color: #23252e; width: 35%; height: 87.5%; border-radius: 25px
+        }
+        @media(max-aspect-ratio: 16/9){
+            section{
+                width: 95%;
+                left: 2.5%;
+                height: 95%;
+            }
+            #disharea{
+                width: 90%; z-index: 10; height: 25%; top:5%;
+            }
+            #dealarea{
+                width: 90%; z-index: 10; height: 25%; top:35.5%;
+            }
+            #orderdish{
+                font-size: 180%; position:absolute; top:1.5%; left: 5%; color: white;
+            }
+            #orderdeals{
+                font-size: 180%; position:absolute; top:31.5%; left: 5%; color: white;
+            }
+            #paymenttab{
+                position: absolute; top: 62.5%; left: 5%; background-color: #23252e; width: 90%; height: 35%; border-radius: 25px
+            }
+        }
+
+
+
+
     </style>
     <script>
 
@@ -160,9 +201,9 @@
 
 <section>
     <form id="postform" method="post"></form>
-    <div style="font-size: 180%; position:absolute; top:3%; left: 5%; color: white;" >Ordered dishes:</div>
+    <div id="orderdish" >Ordered dishes:</div>
 
-    <div style="position: absolute; top: 7.5%; left: 5%; background-color: #23252e; width: 55%; height: 40%; overflow-y: auto; border-radius: 25px">
+    <div id="disharea">
         <?php
 
 
@@ -305,11 +346,11 @@
 
     </div>
 
-    <div style="font-size: 180%; position:absolute; top:50.5%; left: 5%; color: white" >Ordered deals:</div>
+    <div id="orderdeals" >Ordered deals:</div>
 
 
 
-    <div style="position: absolute; top: 55%; left: 5%; background-color: #23252e; width: 55%; height: 40%; overflow-y: auto; border-radius: 25px">
+    <div id="dealarea">
 
         <?php
 
@@ -457,7 +498,7 @@
 
 
 
-    <div style="position: absolute; top: 7.5%; left: 62.5%; background-color: #23252e; width: 35%; height: 87.5%; border-radius: 25px">
+    <div id="paymenttab">
         <div style="font-size: 180%; position:absolute; top:5%; left: 5%; color: white" >Payment:</div>
 
         <div class="inputname" style ="top:20%" >
