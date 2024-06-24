@@ -101,6 +101,14 @@ session_start();
         }
 
 
+        #sectionselect{position: absolute; width :40%; top :5%; left: 15%; align-content: center; color: white;text-align: center }
+
+        #carticon{
+            top :3%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b;
+        }
+        #profileicon{
+            top :3%; left : 3%; position : absolute; z-index: 10
+        }
 
         @keyframes transition1{
 
@@ -139,12 +147,14 @@ session_start();
 
 
         @media(max-aspect-ratio: 16/9){
+
+
             .section1image{
                 animation-name: null;
             }
             section{
                 width: 95%;
-                left: 5%;
+                left: 2.5%;
 
                 height: 90%;
             }
@@ -179,6 +189,26 @@ session_start();
             #welcometext{
                 font-size: 100%;
 
+            }
+
+            #najahtext{
+                display: none;
+            }
+            #sectionselect{
+                width: 60%;
+                left: 20%;
+                font-size:80% ;
+            }
+
+            #carticon{
+                left: 82%;
+                width: 60px;
+                height: 60px;
+            }
+            #profileicon{
+                left: 2%;
+                width: 80px;
+                height: 80px;
             }
 
         }
@@ -412,7 +442,7 @@ session_start();
 
 <div id="start_of_page" style="position: absolute; top:0%"></div>
 
-<table  style ="position: absolute; width :40%; top :5%; left: 15%; align-content: center; color: white;text-align: center ">
+<table id="sectionselect" >
     <tr>
         <td class="textstyle" id="homebt" onclick="choose_section(1)" onmouseleave="unhover(1) " style="color: orange"> <a > home </a> </td>
         <td class="textstyle" id="menubt" onclick="choose_section(2)" onmouseleave="unhover(2)"> <a>menu</a></td>
@@ -425,7 +455,7 @@ session_start();
 
 <table style ="position: absolute; width :30%; top :4%; left: 55%; align-content: center; color: white;text-align: center ">
     <tr>
-        <td style="  font-size: 250%;  background: rgba(27, 28, 36, 0.4); font-family: 'Libre Baskerville'; "> <b>Najah restaurant</b> </td>
+        <td id="najahtext" style="  font-size: 250%;  background: rgba(27, 28, 36, 0.4); font-family: 'Libre Baskerville'; "> <b>Najah restaurant</b> </td>
 
 
     </tr>
@@ -839,9 +869,9 @@ session_start();
 
 
 
-<IMG onclick="opencart()" SRC="images/shopping_cart.png" WIDTH="width" HEIGHT="height"  title="shopping cart" style="top :3%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b;">
+<IMG onclick="opencart()" SRC="images/shopping_cart.png" WIDTH="width" HEIGHT="height"  title="shopping cart" id="carticon">
 
-<IMG SRC="images/profilepic.png" onmouseover="showprofileinfo()" WIDTH="width" HEIGHT="height" ALT="Image Text" style="top :3%; left : 3%; position : absolute; z-index: 10">
+<IMG SRC="images/profilepic.png" onmouseover="showprofileinfo()" WIDTH="width" HEIGHT="height" ALT="Image Text" id="profileicon" >
 <div  onmouseleave="hideprofileinfo()"  onmouseover="showprofileinfo()" style="visibility: hidden;top :3%; left : 2.7%; position : absolute; background-color: #1b1c24; text-align: center; border-radius: 25px; width: 6%; height: 20%; z-index: -10;" id="profileinfo">
     <span style="width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%"> user name</span>
     <a href="index.html" style="width: 100%; top:75%; position: absolute; left: 0%; color: white"> log out</a>
