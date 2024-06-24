@@ -184,7 +184,9 @@ session_start();
             text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 41.2%;
         }
 
-        #sales{display: none;}
+        #sales{
+            display: none;
+        }
 
 
 
@@ -379,6 +381,9 @@ session_start();
             .dealbutton{
                 font-size: 70%;
 
+            }
+            #hidetale{
+                display: none;
             }
 
         }
@@ -1136,7 +1141,7 @@ session_start();
     ?>
     </div>
 
-
+<div id="hidetale" style="background-image: url('images/foodbg.jpg'); background-attachment: fixed; position: absolute; top: 85%; height: 15%; width: 100%">
 </section>
 
 <section  id="contact" >
