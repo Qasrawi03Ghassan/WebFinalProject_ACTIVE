@@ -116,7 +116,7 @@ session_start();
     <span style="color: white;position: fixed;left: 125px;top: 100px;visibility: hidden;opacity: 0;transition: visibility 0.25s ease,opacity 0.25s ease;font-size: 20px" id="logoutBtn" onclick="logout()"><a href="index.php" style="color: white;"><i>Logout</i></a></span>
 </div>
 <div id="mainCont" align="center">
-    <h1 id="title">Welcome back <?php echo $_SESSION['adminUsername']  ?></h1>
+    <h1 id="title">Welcome back <?php if(isset($_SESSION['adminUsername']))echo $_SESSION['adminUsername']  ?></h1>
     <div id="nav">
         <table align="center" width="100%" >
             <tr>
@@ -209,6 +209,7 @@ session_start();
             echo "<td style='font-family: $font;color: white;font-size: 20px'><button type='submit' style='border-radius: 10px;font-family: $font;background-color: orange;color: white' class='sBtn'>Add dish</button</td>";
             echo "</form>";
             echo "</table>";
+
 
             //Editing an existing dish:
             if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -438,16 +439,6 @@ session_start();
 
 
     }
-
-    /*document.getElementById("dealSearch").addEventListener('keyup',function () {
-        for(var i=0;i<document.getElementsByName("dealN").length;i++){
-            if(document.getElementsByName("dealN").item(i).value.includes(document.getElementById("dealSearch").value)){
-                document.getElementsByName("dealN").item(i).style.visibility="hidden";
-            }else{
-                document.getElementsByName("dealN").item(i).style.visibility="visible";
-            }
-        }
-    });*/
 
     document.getElementById("dishes").addEventListener('click',function () {
         document.getElementById("dishes").style.color="orange";

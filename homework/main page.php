@@ -13,15 +13,16 @@ try{
     echo"<script>alert('Connection to database failed!');</script>";
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
+
     <meta charset="UTF-8">
     <title>Najah restaurant</title>
     <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+
 
 
     <style>
@@ -35,7 +36,7 @@ try{
             transition: none;}
 
 
-            html {
+        html {
             scroll-behavior: smooth;
         }
         body{
@@ -58,15 +59,16 @@ try{
         }
         .textstyle{
 
-           font-size: 150%;
+            font-size: 150%;
             background: rgba(27, 28, 36, 0.3);
 
         }
 
 
-            a:link{color: white;}
-            a:hover{color: orange;
-                cursor: pointer;}  /*Changed from none to pointer by Ghassan*/
+
+        a:link{color: white;}
+        a:hover{color: orange;
+            cursor: pointer;}  /*Changed from none to pointer by Ghassan*/
 
         div.section1image{
 
@@ -86,6 +88,10 @@ try{
             top:5%;
             border-radius: 25px;
             background-color: #1b1c24;
+        }
+
+        .salesimg{
+            max-height: 100%; max-width: 70%;
         }
 
         .salesdesc{
@@ -124,12 +130,85 @@ try{
             top :3%; left : 3%; position : absolute; z-index: 10
         }
 
+        #profileinfo{
+            visibility: hidden;top :3%; left : 2.7%; position : absolute; background-color: #1b1c24; text-align: center; border-radius: 25px; width: 6%; height: 20%; z-index: -10;
+        }
+
+        #profiletext{
+            width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%;
+        }
+
+        #contact{
+            display: none; height: 40%
+        }
+
+        #return{
+            top :85%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b; display: none
+        }
+        #dishmenuselect{position: absolute; width :80%; top:1.5%; left: 5%; align-content: center; color: white;text-align: center; table-layout: fixed
+
+        }
+        #searchbar{width: 120%;height: 30px; background-color: rgba(35,37,46,0.76); color: white; }
+
+        #searchbutton{
+            font-size: 0%; position: absolute; height: 30px; width: 33px; left:88%; top:1.7%; background-image: url('images/search.png'); background-color: #23252e
+        }
+
+        .dish{
+            background-color: #23252e;color: white ;border-radius: 10px;  width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;
+        }
+        .dishimage{
+            position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;
+        }
+
+        #dishtable{
+            position: absolute; width: 90%; left: 5%; top: 0%; align-content: flex-start; height: 3000px; background-color: #1b1c24; scroll-behavior: smooth;
+        }
+        .dishtitle{
+            top:220px; position: absolute; text-align: center; width: 100%;font-family: 'Libre Baskerville'; font-style: unset
+        }
+
+        .dishdesc{
+            top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: 'Libre Baskerville'; font-style: unset; font-size: 80%
+        }
+
+        .dishbutton{
+            background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;
+        }
+
+        .dishamount{
+            position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center;
+        }
+
+
+        #dishscroll{
+            scroll-behavior: smooth;position: absolute; top: 5%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%; overflow-y: hidden;
+        }
+
+        #dealscroll{
+            scroll-behavior: smooth;position: absolute; top: 45%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%; overflow-y: hidden
+        }
+
+        #dealstext1{
+            text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 1.2%;
+        }
+
+        #dealstext2{
+            text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 41.2%;
+        }
+
+        #sales{
+            display: none;
+        }
+
+
+
         @keyframes transition1{
 
 
             0% { left: 20%; width: 60%; height: 40% ;z-index: 10; top: 8%;visibility: unset}
             25% { left: 20%; width: 60%; height: 40% ;z-index: 10;top: 8%}
-          /*  32%{opacity: 0.9; left: 16%} 34%{opacity: 0.7; left: 12%} 36%{opacity: 0.5; left: 8%}38%{opacity: 0.3; left:4%}*/
+            /*  32%{opacity: 0.9; left: 16%} 34%{opacity: 0.7; left: 12%} 36%{opacity: 0.5; left: 8%}38%{opacity: 0.3; left:4%}*/
             35% { left: 0%;visibility: hidden; width: 30%; height: 20%;top:17%}
             89%{visibility: hidden}
             90% { left: 70%; width: 30%; height: 20% ;z-index: 10;top: 17%; visibility: unset}
@@ -160,7 +239,10 @@ try{
         }
 
 
+
+
         @media(max-aspect-ratio: 16/9){
+
 
 
             .section1image{
@@ -223,6 +305,98 @@ try{
                 left: 2%;
                 width: 80px;
                 height: 80px;
+                z-index: 20;
+            }
+            #profileinfo{
+                z-index: 10;
+                top :3%; left : 2%; position : absolute; background-color: #292a33; text-align: center; border-radius: 25px; width: 80px; height: 20%;
+            }
+            #profiletext{
+                top:50%;
+                font-size: 80%;
+
+            }
+            #contact{
+                display: none; height: 80%
+            }
+            #return{
+                top :90%; left : 82%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b; display: none;  width: 45px;
+                height: 55px;
+            }
+            #dishmenuselect{
+
+                position: absolute; width :80%; top:1.5%; left: 2.5%; align-content: center; color: white;text-align: center; table-layout: fixed; font-size: 60%;
+
+            }
+            #searchbar{width: 140%;height: 30px; background-color: rgba(35,37,46,0.76); color: white;}
+            #searchbutton{
+                top:1.9%;
+            }
+            .dish{
+                border-radius: 10px;  width: 100px; height: 250px; top:0%;border-spacing: 30px;
+            }
+            .dishimage{
+                width: 100px; max-height: 100px; border-radius: 50px; left:1px;top:5px;
+            }
+
+
+            #dishtable{
+                width: 110%; left: 1%; top: 0%; height: 3000px;
+            }
+
+            .dishtitle{
+                top:85px; position: absolute; text-align: center; width: 100%;font-family: 'Libre Baskerville'; font-style: unset; font-size: 80%;
+            }
+
+            .dishdesc{
+                top:95px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: 'Libre Baskerville'; font-style: unset; font-size: 60%
+            }
+
+            .dishbutton{
+                border-radius: 10px; top:210px; left:10%; width: 50%; height: 30px; font-size: 80%;
+            }
+
+            .dishamount{
+                position: absolute; left:60%; width: 30%; height: 25px;top:210px;border-radius: 10px; text-align: center;
+            }
+            #dishscroll{
+                top: 5%;  width: 95%;left: 2.5%; border-radius: 25px; height: 45%;
+            }
+            #dealscroll{
+                top: 55%;  width: 95%;left: 2.5%; border-radius: 25px; height: 45%;
+            }
+
+            span.salesspan{
+                position: absolute;
+                width: 90%;
+                height: 90%;
+                top:5%;
+                border-radius: 25px;
+                background-color: #1b1c24;
+            }
+
+            .salesimg{
+                max-height: 100%; max-width: 60%; top: 20%; left: 1%; position: absolute;
+            }
+
+            #sales{height: 120%}
+
+            #dealstext1{
+                text-align: left; font-size: 120%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 0.2%;
+            }
+
+            #dealstext2{
+                text-align: left; font-size: 120%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 49.4%;
+            }
+            .dealdesc{
+                font-size: 70%;
+            }
+            .dealbutton{
+                font-size: 70%;
+
+            }
+            #hidetale{
+                display: none;
             }
 
         }
@@ -266,7 +440,7 @@ try{
 
 
 
-            function stopAnimation(element) {
+        function stopAnimation(element) {
             $(element).css("-webkit-animation", "none");
             $(element).css("-moz-animation", "none");
             $(element).css("-ms-animation", "none");
@@ -274,7 +448,7 @@ try{
         }
 
 
-            function show_return(){
+        function show_return(){
             if(window.scrollY>300) {
                 document.getElementById("return").style.display = "block"
             }
@@ -323,19 +497,19 @@ try{
             switch(num) {
                 case 1:
                     if( "block" == document.getElementById("home").style.display)
-                    document.getElementById("homebt").style.color="orange";
+                        document.getElementById("homebt").style.color="orange";
                     break;
                 case 2:
                     if( "block" == document.getElementById("menu").style.display)
-                    document.getElementById("menubt").style.color="orange";
+                        document.getElementById("menubt").style.color="orange";
                     break;
                 case 3:
                     if( "block" == document.getElementById("sales").style.display)
-                    document.getElementById("salesbt").style.color="orange";
+                        document.getElementById("salesbt").style.color="orange";
                     break;
                 case 4:
                     if( "block" == document.getElementById("contact").style.display)
-                    document.getElementById("contactbt").style.color="orange";
+                        document.getElementById("contactbt").style.color="orange";
                     break;
 
                 default:
@@ -384,27 +558,36 @@ try{
 
         }
 
-        function s1(){document.getElementById('dishscroll').scrollTo(600, 0)}
-        function s2(){document.getElementById('dishscroll').scrollTo(1200, 0)}
-        function s3(){document.getElementById('dishscroll').scrollTo(0, 0)}
+        function s1(){
+            document.getElementById('dishscroll').scrollTo(600, 0);
+            document.getElementById('dealscroll').scrollTo(600, 0);
+        }
+        function s2(){
+            document.getElementById('dishscroll').scrollTo(1200, 0);
+            document.getElementById('dealscroll').scrollTo(1200, 0);
+        }
+        function s3(){
+            document.getElementById('dishscroll').scrollTo(0, 0);
+            document.getElementById('dealscroll').scrollTo(0, 0);
+        }
 
         let breakfun=false;
         function sidescroll(){
 
-                    if(breakfun)
-                        return;
-                    window.setInterval(s1, 5000);
+            if(breakfun)
+                return;
+            window.setInterval(s1, 5000);
 
-                    if(breakfun)
-                        return;
-                    window.setInterval(s2, 10000);
+            if(breakfun)
+                return;
+            window.setInterval(s2, 10000);
 
-                    if(breakfun)
-                        return;
-                    window.setInterval(s3, 15000);
+            if(breakfun)
+                return;
+            window.setInterval(s3, 15000);
 
-                     if(breakfun)
-                        return;
+            if(breakfun)
+                return;
 
         }
 
@@ -430,21 +613,40 @@ try{
             document.cookie= dishname +'='+amount;
             let str= amount + ' orders of '+dishname+' added to cart';
             alert(str);
+
         }
-            function buttonhover(id){
-                document.getElementById(id).style.backgroundColor='#fbb114';
-            }
+        function buttonhover(id){
+            document.getElementById(id).style.backgroundColor='#fbb114';
+        }
 
-            function buttonunhover(id){
-                document.getElementById(id).style.backgroundColor='orange';
-            }
+        function buttonunhover(id){
+            document.getElementById(id).style.backgroundColor='orange';
+        }
 
-            function senddealtocart( dealname)
-            {
-                document.cookie= dealname +'='+'1';
-                let str= '1' + ' orders of '+dealname+' added to cart';
-                alert(str);
+        function senddealtocart( dealname)
+        {
+            document.cookie= dealname +'='+'1';
+            let str= '1' + ' orders of '+dealname+' added to cart';
+            alert(str);
+        }
+
+        let mobileexists=false;
+
+        function checkmobile() {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+
+
+                mobileexists=true;
+
             }
+            else {
+                mobileexists=false;
+
+            }
+        }
+
+
 
 
     </script>
@@ -452,7 +654,10 @@ try{
 
 </head>
 
-<body onscroll="show_return()" onbeforeunload="close()">
+<body onscroll="show_return()" onbeforeunload="close()" onload="checkmobile();">
+
+
+
 
 <div id="start_of_page" style="position: absolute; top:0%"></div>
 
@@ -482,7 +687,7 @@ try{
 
     <div id ="animation1" class="section1image" >
 
-     <img src="images/burgersale.png" id="burger1" >
+        <img src="images/burgersale.png" id="burger1" >
     </div>
     <div id ="animation2" class="section1image" >
         <img src="images/kindpng_3844221.png" id="pizza1">
@@ -493,7 +698,7 @@ try{
     </div>
 
     <div id="qr" style="position: absolute; left: 20%; top: 62%; height: 40%; width:60%; text-align: center">
-    <img src="images/qrcode.png" style=" max-height: 120%">
+        <img src="images/qrcode.png" style=" max-height: 120%">
         <h1 style="; left: 65%;  top:10%; font-size:200%; color: white;font-family: 'Libre Baskerville'; "> Visit our <br> mobile site!</h1>
 
 
@@ -505,212 +710,245 @@ try{
 
 <section style="display: none; height: 140%" id="menu">
     <form method="post" action="main%20page.php" id="dishform">
-    <table  style ="position: absolute; width :80%; top:1.5%; left: 5%; align-content: center; color: white;text-align: center; table-layout: fixed">
-        <tr>
+        <table  id="dishmenuselect">
+            <tr>
+                <td  class="textstyle" id="alldish" style="color: orange;background-color: #23252e; border-top-left-radius: 10px;border-bottom-left-radius: 10px" onclick="changedishes('all')" > <a > all </a></td>
+                <td class="textstyle" id="maindish"  style=" background-color: #23252e" onclick="changedishes('main')"> <a > main dishes </a> </td>
+                <td class="textstyle" id="sides" style="background-color: #23252e"  onclick="changedishes('side')"> <a > sides </a></td>
+                <td class="textstyle" id="drinks" style="background-color: #23252e" onclick="changedishes('drink')" > <a > drinks </a></td>
+                <td> <input type="search" id="searchbar" name="searchresult" placeholder="find your favourite dish!" > </td>
+                <input type="submit" value="a" name="searched" id="searchbutton" >
+                <input type="hidden" name="typeresult" value="all" id="typeresult">
 
-            <td  class="textstyle" id="alldish" style="color: orange;background-color: #23252e; border-top-left-radius: 10px;border-bottom-left-radius: 10px" onclick="changedishes('all')" > <a > all </a></td>
-            <td class="textstyle" id="maindish"  style=" background-color: #23252e" onclick="changedishes('main')"> <a > main dishes </a> </td>
-            <td class="textstyle" id="sides" style="background-color: #23252e"  onclick="changedishes('side')"> <a > sides </a></td>
-            <td class="textstyle" id="drinks" style="background-color: #23252e" onclick="changedishes('drink')" > <a > drinks </a></td>
-            <td> <input type="search" placeholder="find your favourite dish!" style="width: 120%;height: 30px; background-color: rgba(35,37,46,0.76); color: white;" name="searchresult"> </td>
-            <input type="submit" value="a" name="searched" style=" font-size: 0%; position: absolute; height: 30px; width: 33px; left:88%; top:1.7%; background-image: url('images/search.png'); background-color: #23252e" >
-            <input type="hidden" name="typeresult" value="all" id="typeresult">
-
-        </tr>
-    </table>
+            </tr>
+        </table>
     </form>
 
-    <div style=" position:absolute; width: 100% ;overflow-y: auto; height: 90%; top:7%; sc">
-    <?php
+    <div style=" position:absolute; width: 100% ;overflow-y: auto; height: 90%; top:7%; ">
+
+        <?php
 
 
-    error_reporting(E_ERROR | E_PARSE);
-    class dish{
-        public $name;
-        public $type;
-        public $price;
-        public $image;
-        public $description;
-        function __construct($name, $type, $price, $image, $description){
-            $this->name= $name;
-            $this->type= $type ;
-            $this->price =  $price;
-            $this->image =  $image ;
-            $this->description = $description;
-        }
-    }
-
-    //Get dishes from database:
-    $dishes = array();
-
-    $qry = "SELECT * FROM dishes";
-    $result = mysqli_query($conn,$qry);
-    foreach ($result as $row){
-        $name = $row['Name'];
-        $type = $row['Type'];
-        $price= $row['Price'];
-        $URL = $row['Image url'];
-        $desc = $row['Description'];
-
-        $dishes[] = new dish($name,$type,$price,$URL,$desc);
-    }
-
-
-
-
-    $pizza = new dish('pizza','main',20.0,'images/dishpizza.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
-    $burger = new dish('burger','main',30.0,'images/dishburger.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
-    $salad = new dish('salad','side',20.0,'images/dishsalad.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
-    $cola = new dish('cola','drink',2.0,'images/cola.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
-    $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
-
-
-    //$dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
-
-    $font ='Libre Baskerville';
-    $id1 ='id';
-    $id2='id';
-    $color ='"'.'#fbb114'.'"';
-    $color2='"'.'orange'.'"';
-
-
-    echo "<table id='dishtable' style=';position: absolute; width: 90%; left: 5%; top: 0%; align-content: flex-start; height: 3000px; background-color: #1b1c24; scroll-behavior: smooth;'>";
-    $num =0;
-
-
-     $chosentype= $_POST['typeresult'];
-     $chosensearch = $_POST['searchresult'];
-    if (empty($chosentype))
-    {
-        $chosentype='all';
-    }
-
-
-    foreach ($dishes as $x) {
-
-        $id1=$num.'price';
-        $id2=$num.'amount';
-        $id3=$num.'disharea';
-        $name= '"'.$x->name.'"';
-
-
-        if(empty($chosensearch)){
-        if($x->type==$chosentype || $chosentype=='all') {
-            if ((($num % 4) == 0) && (!$num == 0)) {
-                echo "<tr> ";
+        error_reporting(E_ERROR | E_PARSE);
+        class dish{
+            public $name;
+            public $type;
+            public $price;
+            public $image;
+            public $description;
+            function __construct($name, $type, $price, $image, $description){
+                $this->name= $name;
+                $this->type= $type ;
+                $this->price =  $price;
+                $this->image =  $image ;
+                $this->description = $description;
             }
 
 
+        }
+
+        //Get dishes from database:
+        $dishes = array();
+
+        $qry = "SELECT * FROM dishes";
+        $result = mysqli_query($conn,$qry);
+        foreach ($result as $row){
+            $name = $row['Name'];
+            $type = $row['Type'];
+            $price= $row['Price'];
+            $URL = $row['Image url'];
+            $desc = $row['Description'];
+
+            $dishes[] = new dish($name,$type,$price,$URL,$desc);
+        }
 
 
-            echo "<td  style='; position: relative '> 
-            <div   style='background-color: #23252e;color: white ;border-radius: 10px;  width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
+        $pizza = new dish('pizza','main',20.0,'images/dishpizza.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
+        $burger = new dish('burger','main',30.0,'images/dishburger.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing');
+        $salad = new dish('salad','side',20.0,'images/dishsalad.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
+        $cola = new dish('cola','drink',2.0,'images/cola.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
+        $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
 
-            <img  src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
 
-           <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
-            <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
-          <button  title='add to cart' class='cartBtns' name=$x->price id= $id1 onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
-          <input  name=$name type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
+        //$dishes = array( $salad,$chicken,$pizza, $salad,$pizza, $burger,$cola,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
+
+
+        $font ='Libre Baskerville';
+        $id1 ='id';
+        $id2='id';
+        $color ='"'.'#fbb114'.'"';
+        $color2='"'.'orange'.'"';
+
+
+        echo "<table id='dishtable' >";
+        $num =0;
+
+
+        $chosentype= $_POST['typeresult'];
+        $chosensearch = $_POST['searchresult'];
+        if (empty($chosentype))
+        {
+            $chosentype='all';
+        }
+
+
+        foreach ($dishes as $x) {
+
+            $id1=$num.'price';
+            $id2=$num.'amount';
+            $id3=$num.'disharea';
+            $name= '"'.$x->name.'"';
+
+
+            if(empty($chosensearch)){
+                if($x->type==$chosentype || $chosentype=='all') {
+                    if ((($num % 4) == 0) && (!$num == 0)) {
+                        echo "<tr> ";
+                    }
+
+
+
+
+                    echo "<td  style='; position: relative '> 
+            <div   class='dish'>
+
+            <img  src='$x->image' class='dishimage' alt='image unavailable'>
+
+           <h4 class='dishtitle'> $x->name </h4>
+            <p class='dishdesc'>  <br> <br> $x->description</p>
+          <button class='dishbutton' title='add to cart' class='cartBtns' name=$x->price id= $id1 onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
+          <input class='dishamount' name=$name type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1' > 
        
             </div>
          </td>";
 
 
 
-            if ((($num + 1 % 4) == 0) && (!$num == 0)) {
-                echo "</tr>";
-            }
+                    if ((($num + 1 % 4) == 0) && (!$num == 0)) {
+                        echo "</tr>";
+                    }
 
-        $num++;
-            }
-        }
-        else{
-            if(str_contains ( $x->name,$chosensearch)) {
-                if ((($num % 4) == 0) && (!$num == 0)) {
-                    echo "<tr> ";
+                    $num++;
                 }
+            }
+            else{
+                if(str_contains ( $x->name,$chosensearch)) {
+                    if ((($num % 4) == 0) && (!$num == 0)) {
+                        echo "<tr> ";
+                    }
 
 
 
 
-                echo "<td  style='; position: relative '> 
-            <div   style='background-color: #23252e;color: white ;border-radius: 10px;  width: 260px; height: 400px; top:0%; position: absolute;border-spacing: 30px;'>
+                    echo "<td  style='; position: relative '> 
+            <div   class='dish'>
 
-            <img  src='$x->image' style='position: absolute; width: 250px; max-height: 250px; background-color:  rgba(35,37,46,0.54);border-radius: 50px; left:5px;top:5px;' alt='image unavailable'>
+            <img  src='$x->image' class='dishimage' alt='image unavailable'>
 
-           <h4 style='top:220px; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset'> $x->name </h4>
-            <p style='top:230px;word-wrap: break-word; position: absolute; text-align: center; width: 100%;font-family: $font; font-style: unset; font-size: 80%'>  <br> <br> $x->description</p>
-          <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart' name=$x->price id= $id1 style=' background-color: orange; border-radius: 10px; border: 2px solid #d9640b; position: absolute; top:350px; left:15%; width: 50%; height: 30px; color: white; font-size: 120%;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
-          <input  name=$name type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1'  style='position: absolute; left:65%; width: 20%; height: 25px;top:350px;border-radius: 10px; text-align: center'> 
-          
+           <h4 class='dishtitle'> $x->name </h4>
+            <p class='dishdesc'>  <br> <br> $x->description</p>
+          <button class='dishbutton' title='add to cart' class='cartBtns' name=$x->price id= $id1 onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' onclick='sendtocart($name, $num)'><b> $x->price  </b>$</button>
+          <input class='dishamount' name=$name type='number' oninput='alt_price($num)' step='1' id= $id2 min='1' placeholder='1' > 
        
             </div>
          </td>";
 
 
 
-                if ((($num + 1 % 4) == 0) && (!$num == 0)) {
-                    echo "</tr>";
+                    if ((($num + 1 % 4) == 0) && (!$num == 0)) {
+                        echo "</tr>";
+                    }
+
+                    $num++;
                 }
 
-                $num++;
             }
-
         }
-    }
 
 
-    echo "</table>";
+        echo "</table>";
 
-    if($num<=25)
-    {
-        echo" <script>
+        if($num<=25)
+        {
+            echo" <script>
               document.getElementById('dishtable').style.height='2500px';
+               checkmobile();
+              if(mobileexists){
+              document.getElementById('dishtable').style.height='1600px';
+              }
               </script>
             ";
-    }
-    if($num<=16)
-    {
-        echo" <script>
+        }
+        if($num<=20)
+        {
+            echo" <script>
+              document.getElementById('dishtable').style.height='2200px';
+              checkmobile();
+              if(mobileexists){
+              document.getElementById('dishtable').style.height='1350px';
+              }
+              </script>
+            ";
+        }
+        if($num<=16)
+        {
+            echo" <script>
               document.getElementById('dishtable').style.height='1800px';
+              checkmobile();
+              if(mobileexists){
+              document.getElementById('dishtable').style.height='1100px';
+              }
               </script>
             ";
-    }
+        }
 
-    if($num<=12)
-    {
-        echo" <script>
-              document.getElementById('dishtable').style.height='1400px';
+        if($num<=12)
+        {
+            echo" <script>
+              document.getElementById('dishtable').style.height='1300px';
+              if(mobileexists){
+              document.getElementById('dishtable').style.height='800px';
+              }
               </script>
             ";
-    }
+        }
 
-    if($num<=8)
-    {
-        echo" <script>
-              document.getElementById('dishtable').style.height='1000px';
+        if($num<=8)
+        {
+            echo" <script>
+              document.getElementById('dishtable').style.height='900px';
+              if(mobileexists){
+              document.getElementById('dishtable').style.height='550px';
+              }
+             
               </script>
             ";
-    }
-    if($num>=31)
-    {
-        echo" <script>
+        }
+        if($num>=31)
+        {
+            echo" <script>
               document.getElementById('dishtable').style.height='3800px';
+               checkmobile();
+              if(mobileexists){
+              document.getElementById('dishtable').style.height='2400px';
+              }
               </script>
             ";
-    }
-    ?>
+        }
+
+
+
+        ?>
     </div>
 
 
 </section>
 
-<section style="display: none" id="sales">
+<section  id="sales">
 
-    <p style="text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 1.2%;"> limited time deals: </p>
+    <p id="dealstext1"> limited time deals: </p>
 
-    <div  id='dishscroll' onmouseover="breakfun=true;" onmouseleave="breakfun=false;" style="scroll-behavior: smooth;position: absolute; top: 5%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%;">
+    <div  id='dishscroll' onmouseover="breakfun=true;" onmouseleave="breakfun=false;" >
 
 
         <?php
@@ -745,69 +983,94 @@ try{
             $deals[] = new deal($name,$type,$price,$img,$desc);
         }
 
+
         $burgersale = new deal('burgersale','limited', 82, 'images/burgersale.png','save 50% 4 burgers 2 cola 1 fries 1 salad');
-        $pizzasale = new deal('pizzasale','limited', 38.5, 'images/pizza.png','save 40% 1 large pizza 2cola 1 fries');
-        $chickensale = new deal('chickensale','limited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken meals 2 cola 2 fries 1 salad');
+        $pizzasale = new deal('pizzasale','limited', 38.5, 'images/pizza.png','save 40% 1 large-pizza 2cola 1 fries');
+        $chickensale = new deal('chickensale','limited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken-meals 2 cola 2 fries 1 salad');
 
         //$deals= array($burgersale,$pizzasale,$chickensale);
 
         $count=0;
         $num=2.5;
+        $nnum=2.5;
         $btid='';
 
         foreach ($deals as $x)
         {
+            $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile"));
+            if($isMob){
+                $left=$nnum.'%';
+            }else{
+                $left=$num.'%';
+            }
+
             $desc= explode(" ",$x->description);
+            $desc[0]=$desc[0].' ';
 
             $btid= $count.'salesbt';
 
             $name= '"'.$x->name.'"';
 
-            $left=$num.'%';
+
             echo "
             <span class='salesspan' style=' left: $left'>
-            <img src=$x->image style='max-height: 100%; max-width: 70%'>
+            <img class='salesimg' src=$x->image >
             <div class='salesdesc'>
                ";
             $strcount=0;
 
-                while ($strcount <count($desc))
+            echo "<span class='dealdesc'>";
+
+            while ($strcount <count($desc))
+            {
+                if($strcount==0)
                 {
-                    if($strcount==0)
-                    {
-                        echo "<br> <br> <b style='color: orange; font-size: 200%'>";
-
+                    if(!$isMob) {
+                        echo "<br>";
                     }
 
-                    if(($strcount>1)&& ($strcount%2==0))
-                    {
-                        echo "<b>";
-
-                    }
-
-                    echo $desc[$strcount];
-
-                    if(($strcount>1)&& ($strcount%2==0))
-                    {
-                        echo "</b>";
-                    }
-                    if($strcount==1)
-                    {
-                        echo "</b>";
-                    }
-
-                    if((($strcount+1)%2)==0)
-                    {
-                        echo "<br> <br>";
-                    }
-                    $strcount+=1;
+                    echo "<br>  <b style='color: orange; font-size: 200%'>";
 
                 }
-             echo "
-              <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart'  id=$btid style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;' onclick='senddealtocart($name);'><b> $x->price  </b>$</button>
+
+                if(($strcount>1)&& ($strcount%2==0))
+                {
+                    echo "<b>";
+
+                }
+
+
+                echo $desc[$strcount];
+
+                if(($strcount>1)&& ($strcount%2==0))
+                {
+                    echo "</b>";
+
+                }
+                if($strcount==1)
+                {
+                    echo "</b>";
+                    if ($isMob) {
+                        echo "<br>";
+                    }
+                }
+
+                if((($strcount+1)%2)==0)
+                { if(!$isMob)
+                {
+                    echo "<br>";
+                }
+                    echo " <br>";
+                }
+                $strcount+=1;
+
+            }
+            echo "</span>
+              <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart'  id=$btid style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;' onclick='senddealtocart($name)'><b class='dealbutton'> $x->price  </b> <b class='dealbutton'  style='font-style: unset'>$</b></button>
             </div>
          </span>";
             $num+=62.5;
+            $nnum+=96;
             $count++;
 
         }
@@ -821,108 +1084,134 @@ try{
 
         <div style="position: absolute; left: 187.5%; width: 2.5%; height: 100%"> </div>
     </div>
-    <p style="text-align: left; font-size: 150%; color: white; font-family: 'Libre Baskerville'; position: absolute; left:5%;width: 100%; top: 41.2%;"> deals: </p>
-    <div  id='dealscroll' onmouseover="breakfun=true;" onmouseleave="breakfun=false;" style="scroll-behavior: smooth;position: absolute; top: 45%; background-color: #23252e; width: 100%; border-radius: 25px;  ;overflow-x: auto; height: 35%;">
+    <p id="dealstext2"> deals: </p>
+    <div  id='dealscroll' onmouseover="breakfun=true;" onmouseleave="breakfun=false;" >
 
-    <?php
+        <?php
 
-    //get deals from database:
-    $deals = array();
+        //get deals from database:
+        $deals = array();
 
-    $qry = "SELECT * FROM deals";
-    $result = mysqli_query($conn,$qry);
-    foreach ($result as $row){
-        $name = $row['Name'];
-        $type = $row['Type'];
-        $price= $row['Price'];
-        $desc = $row['Dishes'];
-        $img = $row['Image url'];
+        $qry = "SELECT * FROM deals";
+        $result = mysqli_query($conn,$qry);
+        foreach ($result as $row){
+            $name = $row['Name'];
+            $type = $row['Type'];
+            $price= $row['Price'];
+            $desc = $row['Dishes'];
+            $img = $row['Image url'];
 
-        $deals[] = new deal($name,'unlimited',$price,$img,$desc);
-    }
+            $deals[] = new deal($name,'unlimited',$price,$img,$desc);
+        }
 
-    $burgersale1 = new deal('burgersale1','unlimited', 82, 'images/burgersale.png','save 50% 4 burgers 2 cola 1 fries 1 salad');
-    $pizzasale1 = new deal('pizzasale1','unlimited', 38.5, 'images/pizza.png','save 40% 1 large pizza 2cola 1 fries');
-    $chickensale1 = new deal('chickensale1','unlimited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken meals 2 cola 2 fries 1 salad');
 
-    //$deals= array($burgersale1,$pizzasale1,$chickensale1);
 
-    $count=0;
-    $num=2.5;
-    $btid='';
 
-    foreach ($deals as $x)
-    {
-        $desc= explode(" ",$x->description);
+        $burgersale1 = new deal('burgersale1','unlimited', 82, 'images/burgersale.png','save 50% 4 burgers 2 cola 1 fries 1 salad');
+        $pizzasale1 = new deal('pizzasale1','unlimited', 38.5, 'images/pizza.png','save 40% 1 large-pizza 2cola 1 fries');
+        $chickensale1 = new deal('chickensale1','unlimited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken-meals 2 cola 2 fries 1 salad');
 
-        $btid= $count.'salesbt2';
+        //$deals= array($burgersale1,$pizzasale1,$chickensale1);
 
-        $name= '"'.$x->name.'"';
+        $count=0;
+        $num=2.5;
+        $nnum=2.5;
+        $btid='';
 
-        $left=$num.'%';
-        echo "
+        foreach ($deals as $x)
+        {
+            $desc= explode(" ",$x->description);
+            $desc[0]=$desc[0].' ';
+
+            $btid= $count.'salesbt2';
+
+            $name= '"'.$x->name.'"';
+
+            $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile"));
+            if($isMob){
+                $left=$nnum.'%';
+            }else{
+                $left=$num.'%';
+            }
+
+
+            echo "
             <span class='salesspan' style=' left: $left'>
-            <img src=$x->image style='max-height: 100%; max-width: 70%'>
+            <img class='salesimg' src=$x->image >
             <div class='salesdesc'>
                ";
-        $strcount=0;
+            $strcount=0;
 
-        while ($strcount <count($desc))
-        {
-            if($strcount==0)
+            echo "<span class='dealdesc'>";
+            while ($strcount <count($desc))
             {
-                echo "<br> <br> <b style='color: orange; font-size: 200%'>";
+                if($strcount==0)
+                {
+                    if(!$isMob) {
+                        echo "<br>";
+                    }
+
+                    echo "<br>  <b style='color: orange; font-size: 200%'>";
+
+                }
+
+                if(($strcount>1)&& ($strcount%2==0))
+                {
+                    echo "<b>";
+
+                }
+
+
+                echo $desc[$strcount];
+
+                if(($strcount>1)&& ($strcount%2==0))
+                {
+                    echo "</b>";
+
+                }
+                if($strcount==1)
+                {
+                    echo "</b>";
+                    if ($isMob) {
+                        echo "<br>";
+                    }
+                }
+
+                if((($strcount+1)%2)==0)
+                { if(!$isMob)
+                {
+                    echo "<br>";
+                }
+                    echo " <br>";
+                }
+                $strcount+=1;
 
             }
-
-            if(($strcount>1)&& ($strcount%2==0))
-            {
-                echo "<b>";
-
-            }
-
-            echo $desc[$strcount];
-
-            if(($strcount>1)&& ($strcount%2==0))
-            {
-                echo "</b>";
-            }
-            if($strcount==1)
-            {
-                echo "</b>";
-            }
-
-            if((($strcount+1)%2)==0)
-            {
-                echo "<br> <br>";
-            }
-            $strcount+=1;
-
-        }
-        echo "
-              <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart'  id=$btid style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;' onclick='senddealtocart($name);'><b> $x->price  </b>$</button>
+            echo " </span>
+              <button onmouseover='  document.getElementById(id).style.backgroundColor= $color;' onmouseleave='document.getElementById(id).style.backgroundColor= $color2;' title='add to cart'  id=$btid style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:80%; left:10%; width: 80%; height: 10%; color: white; font-size: 120%;' onclick='senddealtocart($name);'><b class='dealbutton'> $x->price  </b> <b class='dealbutton'  style='font-style: unset'>$</b></button>
             </div>
          </span>";
-        $num+=62.5;
-        $count++;
+            $num+=62.5;
+            $nnum+=96;
+            $count++;
 
-    }
+        }
 
 
-    ?>
+        ?>
     </div>
 
-
+    <div id="hidetale" style="background-image: url('images/foodbg.jpg'); background-attachment: fixed; position: absolute; top: 85%; height: 15%; width: 100%">
 </section>
 
-<section style="display: none; height: 40%" id="contact">
-<p style="color: white; font-size: 140%; left: 5%;top:5%; position: absolute">
-    this is a project made for the web development course at najah university.<br> <br>
-    you can contact us at <a href= "mailto: NajahRestproj@gmail.com">NajahRestproj@gmail.com</a> for any customer feedback, <br> <br>
-    or you can directly contact the developers of the site at <br> <br> <a href= "mailto: s12112188@stu.najah.edu">s12112188@stu.najah.edu.</a> <br> <a href= "mailto: s12111991@stu.najah.edu">s12111991@stu.najah.edu</a>. <br> <br>
-    all feedback is appreciated and we hope the site proves useful for you!
+<section  id="contact" >
+    <p style="color: white; font-size: 140%; left: 5%;top:5%; position: absolute">
+        this is a project made for the web development course at najah university.<br> <br>
+        you can contact us at <a href= "mailto: NajahRestproj@gmail.com">NajahRestproj@gmail.com</a> for any customer feedback, <br> <br>
+        or you can directly contact the developers of the site at <br> <br> <a href= "mailto: s12112188@stu.najah.edu">s12112188@stu.najah.edu.</a> <br> <a href= "mailto: s12111991@stu.najah.edu">s12111991@stu.najah.edu</a>. <br> <br>
+        all feedback is appreciated and we hope the site proves useful for you!
 
-</p>
+    </p>
 </section>
 
 
@@ -935,7 +1224,7 @@ try{
     <a href="index.php" style="width: 100%; top:75%; position: absolute; left: 0%; color: white" onclick="<?php session_destroy(); ?>"> <?php if(isset($_SESSION['userUsername'])){echo "log out";}else{echo "sign in";} ?></a>
 </div>
 
-<a href ="#start_of_page"><IMG  id="return"   SRC="images/arrow.png" WIDTH="width" HEIGHT="height"  title="return" style="top :85%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b; display: none"> </a>
+<a href ="#start_of_page"><IMG  id="return"   SRC="images/arrow.png" WIDTH="width" HEIGHT="height"  title="return" > </a>
 
 <?php
 
@@ -950,7 +1239,7 @@ if(!empty($check)|| !empty($check2))
     ";
     if($check=='all')
     {
-       echo" <script> 
+        echo" <script> 
             document.getElementById('alldish').style.color='orange'
             document.getElementById('maindish').style.color='white'
             document.getElementById('sides').style.color='white'

@@ -24,6 +24,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $row = $result->fetch_object();
             if($row->Username == $username && $row->Password == SHA1($password) && $row->isAdmin == 0){
                 $_SESSION["userUsername"] = $row->Username;
+                setcookie('user_name',$row->Name);
+                setcookie('cardnum',$row->CardNum);
+                setcookie('cardexp',$row->CardExp);
+                setcookie('cvv',$row->CVV);
                 header('Location: main%20page.php');
             }elseif ($row->Username == $username && $row->Password == SHA1($password) && $row->isAdmin == 1){
                 $_SESSION["adminUsername"] = $row->Username;
@@ -39,4 +43,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 
-include "index.html";
+include "login.html";

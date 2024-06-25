@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $db_server = "localhost";
     $db_name = "webfinalproject_db";
     $db_username = "root";
@@ -9,6 +10,7 @@
     }catch (Exception $e){
         echo"<script>alert('Connection to database failed!');</script>";
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -176,8 +178,24 @@
             document.getElementById(id).style.backgroundColor='orange';
         }
 
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        var uname;
+        var unum;
+        var exp;
+        var ucvv;
+
         function confirmpayment()
         {
+             uname = getCookie('user_name');
+             unum = getCookie('cardnum');
+             exp = getCookie('cardexp');
+             ucvv = getCookie('cvv');
+
             document.cookie.split(';').forEach(cookie => {
                 const eqPos = cookie.indexOf('=');
                 const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
@@ -190,6 +208,12 @@
             else {
                 alert('your order has been sent!');
             }
+
+            document.cookie = 'user_name' + '=' + uname;
+            document.cookie = 'cardnum' + '=' + unum;
+            document.cookie = 'cardexp' + '=' + exp;
+            document.cookie = 'cvv' + '=' + ucvv;
+
             document.getElementById('postform').submit();
 
         }
@@ -529,18 +553,18 @@
         <div style="font-size: 180%; position:absolute; top:5%; left: 5%; color: white" >Payment:</div>
 
         <div class="inputname" style ="top:20%" >
-            Card holder name:<span> &nbsp &nbsp</span><input id="card_holder_name"   placeholder=" john doe" style="width: 90%; height: 70%" >
+            Card holder name:<span> &nbsp &nbsp</span><input id="card_holder_name"   placeholder=" john doe" style="width: 90%; height: 70%" value="<?php if(isset($_COOKIE['user_name'])) echo $_COOKIE['user_name']; ?>">
         </div>
         <div class="inputname" style ="top:30%" >
-            Credit card number:<span>  &nbsp</span><input id="creditnumber"  placeholder="  1234 1234 1234 1234" style="width:90%; height: 70%" >
+            Credit card number:<span>  &nbsp</span><input id="creditnumber"  placeholder="  1234 1234 1234 1234" style="width:90%; height: 70%" value="<?php if(isset($_COOKIE['cardnum'])) echo $_COOKIE['cardnum']; ?>">
         </div>
         <div class="inputname" style ="top:40%" >
             <span style=" position: absolute; width:50%"> Expiration date:</span>
-            <input id="exp_date"   placeholder="  MM/YY" style="width: 45%; height: 70%; left: 45%; position: absolute" >
+            <input id="exp_date"   placeholder="  MM/YY" style="width: 45%; height: 70%; left: 45%; position: absolute" value="<?php if(isset($_COOKIE['cardexp'])) echo $_COOKIE['cardexp']; ?>">
         </div>
         <div class="inputname" style ="top:45%" >
             <span style=" position: absolute; width:50%; left: 25%"> CVV:</span>
-            <input id="cvv"   placeholder="  123" style="width: 45%; height: 70%; left: 45%; position: absolute" >
+            <input id="cvv"   placeholder="  123" style="width: 45%; height: 70%; left: 45%; position: absolute" value="<?php if(isset($_COOKIE['cvv'])) echo $_COOKIE['cvv']; ?>">
         </div>
 
         <button id="paybutton" onmouseover="buttonhover('paybutton')" onmouseleave="buttonunhover('paybutton')" onclick="confirmpayment()" title='price' style=' background-color: orange; border-radius: 20px; border: 2px solid #d9640b; position: absolute; top:70%; left:15%; width: 70%; height: 25%; color: white; font-size: 120%;' > <b>Confirm order<b> </b></button>

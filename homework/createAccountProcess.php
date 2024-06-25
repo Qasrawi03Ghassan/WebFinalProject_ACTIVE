@@ -31,7 +31,7 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['username']) 
     $cc = substr($cy,0,2);
     $date = $cc.$y."-".$m."-".$d;
 
-    $qry = "INSERT INTO `users` (`Serial`, `Name`, `Email`, `Username`, `Password`, `Credit card number`, `Credit card expiration date`, `CVV`, `isAdmin`) VALUES (NULL, '$name', '$email', '$username', SHA1('$password'), '$cardNum', LAST_DAY('$date'), '$cvv', '0')";
+    $qry = "INSERT INTO `users` (`Serial`, `Name`, `Email`, `Username`, `Password`, `CardNum`, `CardExp`, `CVV`, `isAdmin`) VALUES (NULL, '$name', '$email', '$username', SHA1('$password'), '$cardNum', LAST_DAY('$date'), '$cvv', '0')";
     $result = mysqli_query($conn, $qry);
 }
 
