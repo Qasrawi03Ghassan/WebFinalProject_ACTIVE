@@ -932,7 +932,7 @@ try{
 <IMG SRC="images/profilepic.png" onmouseover="showprofileinfo()" WIDTH="width" HEIGHT="height" ALT="Image Text" id="profileicon" >
 <div  onmouseleave="hideprofileinfo()"  onmouseover="showprofileinfo()" style="visibility: hidden;top :3%; left : 2.7%; position : absolute; background-color: #1b1c24; text-align: center; border-radius: 25px; width: 6%; height: 20%; z-index: -10;" id="profileinfo">
     <span style="width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%">log out</span>
-    <a href="index.html" style="width: 100%; top:75%; position: absolute; left: 0%; color: white" onclick="<?php session_destroy(); ?>"> <?php if(isset($_SESSION['userUsername'])){echo "log out";}else{echo "sign in";} ?></a>
+    <a href="index.html" style="width: 100%; top:75%; position: absolute; left: 0%; color: white">log out</a>
 </div>
 
 <a href ="#start_of_page"><IMG  id="return"   SRC="images/arrow.png" WIDTH="width" HEIGHT="height"  title="return" style="top :85%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b; display: none"> </a>
