@@ -565,7 +565,7 @@ try{
     $chicken = new dish('chicken','main',40.0,'images/dishchicken.png','brief desc thingy thing brief desc thingy thing brief desc thingy thing brief desc thingy thing') ;
 
 
-    //$dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
+    $dishes = array( $chicken,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza,$pizza, $salad,$pizza, $burger,$cola, $salad,$pizza, $burger, $salad,$cola,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger, $salad,$pizza, $burger,$pizza);
 
     $font ='Libre Baskerville';
     $id1 ='id';
@@ -931,7 +931,7 @@ try{
 
 <IMG SRC="images/profilepic.png" onmouseover="showprofileinfo()" WIDTH="width" HEIGHT="height" ALT="Image Text" id="profileicon" >
 <div  onmouseleave="hideprofileinfo()"  onmouseover="showprofileinfo()" style="visibility: hidden;top :3%; left : 2.7%; position : absolute; background-color: #1b1c24; text-align: center; border-radius: 25px; width: 6%; height: 20%; z-index: -10;" id="profileinfo">
-    <span style="width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%"> <?php if(isset($_SESSION['userUsername'])){echo $_SESSION['userUsername'];}else{echo 'Guest user';}  ?></span>
+    <span style="width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%">log out</span>
     <a href="index.php" style="width: 100%; top:75%; position: absolute; left: 0%; color: white" onclick="<?php session_destroy(); ?>"> <?php if(isset($_SESSION['userUsername'])){echo "log out";}else{echo "sign in";} ?></a>
 </div>
 
