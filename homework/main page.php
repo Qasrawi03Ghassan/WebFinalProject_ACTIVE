@@ -731,11 +731,26 @@ try{
             }
         }
 
+        //get deals from database:
+        $deals = array();
+
+        $qry = "SELECT * FROM deals";
+        $result = mysqli_query($conn,$qry);
+        foreach ($result as $row){
+            $name = $row['Name'];
+            $type = $row['Type'];
+            $price= $row['Price'];
+            $desc = $row['Dishes'];
+            $img = $row['Image url'];
+
+            $deals[] = new deal($name,$type,$price,$img,$desc);
+        }
+
         $burgersale = new deal('burgersale','limited', 82, 'images/burgersale.png','save 50% 4 burgers 2 cola 1 fries 1 salad');
         $pizzasale = new deal('pizzasale','limited', 38.5, 'images/pizza.png','save 40% 1 large pizza 2cola 1 fries');
         $chickensale = new deal('chickensale','limited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken meals 2 cola 2 fries 1 salad');
 
-        $deals= array($burgersale,$pizzasale,$chickensale);
+        //$deals= array($burgersale,$pizzasale,$chickensale);
 
         $count=0;
         $num=2.5;
@@ -812,13 +827,26 @@ try{
 
     <?php
 
+    //get deals from database:
+    $deals = array();
 
+    $qry = "SELECT * FROM deals";
+    $result = mysqli_query($conn,$qry);
+    foreach ($result as $row){
+        $name = $row['Name'];
+        $type = $row['Type'];
+        $price= $row['Price'];
+        $desc = $row['Dishes'];
+        $img = $row['Image url'];
+
+        $deals[] = new deal($name,'unlimited',$price,$img,$desc);
+    }
 
     $burgersale1 = new deal('burgersale1','unlimited', 82, 'images/burgersale.png','save 50% 4 burgers 2 cola 1 fries 1 salad');
     $pizzasale1 = new deal('pizzasale1','unlimited', 38.5, 'images/pizza.png','save 40% 1 large pizza 2cola 1 fries');
     $chickensale1 = new deal('chickensale1','unlimited', 108, 'images/kindpng_3844221.png','save 30% 3 chicken meals 2 cola 2 fries 1 salad');
 
-    $deals= array($burgersale1,$pizzasale1,$chickensale1);
+    //$deals= array($burgersale1,$pizzasale1,$chickensale1);
 
     $count=0;
     $num=2.5;
@@ -904,8 +932,8 @@ try{
 
 <IMG SRC="images/profilepic.png" onmouseover="showprofileinfo()" WIDTH="width" HEIGHT="height" ALT="Image Text" id="profileicon" >
 <div  onmouseleave="hideprofileinfo()"  onmouseover="showprofileinfo()" style="visibility: hidden;top :3%; left : 2.7%; position : absolute; background-color: #1b1c24; text-align: center; border-radius: 25px; width: 6%; height: 20%; z-index: -10;" id="profileinfo">
-    <span style="width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%"> <?php echo $_SESSION['userUsername']  ?></span>
-    <a href="index.php" style="width: 100%; top:75%; position: absolute; left: 0%; color: white"> log out</a>
+    <span style="width: 100%; top:50%; position: absolute; left: 0%; color: white; font-size: 110%"> <?php if(isset($_SESSION['userUsername'])){echo $_SESSION['userUsername'];}else{echo 'Guest user';}  ?></span>
+    <a href="index.php" style="width: 100%; top:75%; position: absolute; left: 0%; color: white" onclick="<?php session_destroy(); ?>"> <?php if(isset($_SESSION['userUsername'])){echo "log out";}else{echo "sign in";} ?></a>
 </div>
 
 <a href ="#start_of_page"><IMG  id="return"   SRC="images/arrow.png" WIDTH="width" HEIGHT="height"  title="return" style="top :85%; left : 90%; position : fixed; background-color: orange; border-radius: 15px; border: 2px solid #d9640b; display: none"> </a>
