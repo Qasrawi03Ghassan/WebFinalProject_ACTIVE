@@ -430,7 +430,6 @@ try{
             document.cookie= dishname +'='+amount;
             let str= amount + ' orders of '+dishname+' added to cart';
             alert(str);
-            alert(document.cookie);
         }
             function buttonhover(id){
                 document.getElementById(id).style.backgroundColor='#fbb114';
